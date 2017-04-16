@@ -16,6 +16,7 @@ import { SignupComponent } from "./auth/signup.component";
 import { HttpModule } from "@angular/http";
 import { AuthService } from "./auth/auth.service";
 import { NavBarComponent } from "./nav/nav-bar.component";
+import { CarouselComponent } from "./carousel/carousel.component";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { NavBarComponent } from "./nav/nav-bar.component";
         LogoutComponent,
         SigninComponent,
         SignupComponent,
-        NavBarComponent
+        NavBarComponent,
+        CarouselComponent
     ],
     imports: [
         BrowserModule, 

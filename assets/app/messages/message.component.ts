@@ -35,6 +35,5 @@ export class MessageComponent {
             .subscribe(
                 result => console.log(result) 
             );
-
     }
 }
