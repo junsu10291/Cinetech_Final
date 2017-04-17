@@ -1,20 +1,20 @@
 <div 
-    class="card"
+    class="card custom-card"
     (mouseover)="labelShow = true"
     (mouseleave)="labelShow = false"
     (click)="modalTrigger()"
-    [ngStyle]="{'width': elementWidth, 'height': elementHeight}">
+    [ngStyle]="{'width': Width, 'height': Height}">
     <img 
         class="card-img" 
         [src]="movie.imagePath"
-        [ngStyle]="{'width': elementWidth, 'height': elementHeight}">
+        [ngStyle]="{'width': ImgWidth, 'height': ImgHeight}">
     
     <div 
+        [ngStyle]="{'font-size': fontSize, 'width': Width}"
         class="card-img-overlay card-img-custom"
-        *ngIf="true">
+        *ngIf="labelShow">
 
-        <h4 class="card-title"> {{ movie.title }}</h4>
-
+        <div class="card-title"> {{ movie.title }}</div>
         <app-movie-stars [numStars]="3"></app-movie-stars>
 
     </div>
