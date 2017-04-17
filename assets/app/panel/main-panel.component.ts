@@ -4,7 +4,12 @@ import { Component } from "@angular/core";
     selector: "app-main-panel",
     templateUrl: "./main-panel.component.html",
     styles: [`
-
+        main-left-panel {
+            display: inline-block;
+        }
+        main-right-panel {
+            display: inline-block;
+        }
     `]
 })
 
