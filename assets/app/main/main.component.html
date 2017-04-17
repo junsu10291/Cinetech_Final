@@ -2,6 +2,7 @@
 <app-main-panel></app-main-panel>
 
 <app-movie-genre-top 
+    (click)="openModal()"
     *ngFor="let list of [1,2,3,4]"
     [Genre]="'Action'" 
     [MovieList]="movies">
