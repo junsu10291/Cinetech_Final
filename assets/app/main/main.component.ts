@@ -1,4 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { Movies } from '../movies/mock-movie';
+import { Movie } from "../movies/movie.model";
 
 @Component({
     selector: 'app-main',
@@ -7,6 +9,11 @@ import { Component, Input } from "@angular/core";
     
     `]
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+    movies : Movie[] = [];
+    
+    ngOnInit() {
+        this.movies = Movies;
+    }
     
 }

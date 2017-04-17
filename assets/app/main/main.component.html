@@ -1,17 +1,8 @@
 <app-carousel></app-carousel>
-<app-panel></app-panel>
+<app-main-panel></app-main-panel>
 
-<app-movie-input 
-    [movie]="{'title': '20th Century Woman', 'imagePath': './img/default_poster.jpg'}"
-    [elementWidth] = "200">
-</app-movie-input>
-
-<app-movie-input 
-    [movie]="{'title': '20th Century Woman', 'imagePath': './img/default_poster.jpg'}"
-    [elementWidth] = "300">
-</app-movie-input>
-
-<app-movie-input 
-    [movie]="{'title': '20th Century Woman', 'imagePath': './img/default_poster.jpg'}"
-    [elementWidth] = "400">
-</app-movie-input>
+<app-movie-genre-top 
+    *ngFor="let list of [1,2,3,4]"
+    [Genre]="'Action'" 
+    [MovieList]="movies">
+    </app-movie-genre-top>
