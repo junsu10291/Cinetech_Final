@@ -23,6 +23,8 @@ import { MainComponent } from "./main/main.component";
 import { MovieInputComponent } from "./movies/movie-input.component";
 import { PanelComponent } from "./panel/panel.component";
 import { MovieStarsComponent } from "./movies/movie-stars.component";
+import { MovieGenreTopComponent } from "./movies/movie-genre-top.component";
+import { MainPanelComponent } from "./panel/main-panel.component";
 
 @NgModule({
     declarations: [
@@ -42,7 +44,9 @@ import { MovieStarsComponent } from "./movies/movie-stars.component";
         MainComponent,
         MovieInputComponent,
         PanelComponent,
-        MovieStarsComponent
+        MovieStarsComponent,
+        MovieGenreTopComponent,
+        MainPanelComponent
     ],
     imports: [
         BrowserModule, 
