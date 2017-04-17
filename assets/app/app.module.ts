@@ -17,7 +17,7 @@ import { HttpModule } from "@angular/http";
 import { AuthService } from "./auth/auth.service";
 import { NavBarComponent } from "./nav/nav-bar.component";
 import { CarouselComponent } from "./carousel/carousel.component";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselCaptionComponent } from "./carousel/carousel-caption.component";
 import { MainComponent } from "./main/main.component";
 import { MovieInputComponent } from "./movies/movie-input.component";
@@ -25,6 +25,8 @@ import { PanelComponent } from "./panel/panel.component";
 import { MovieStarsComponent } from "./movies/movie-stars.component";
 import { MovieGenreTopComponent } from "./movies/movie-genre-top.component";
 import { MainPanelComponent } from "./panel/main-panel.component";
+import { MovieDetailModalComponent } from "./movies/movie-detail-modal.component";
+
 
 @NgModule({
     declarations: [
@@ -46,7 +48,8 @@ import { MainPanelComponent } from "./panel/main-panel.component";
         PanelComponent,
         MovieStarsComponent,
         MovieGenreTopComponent,
-        MainPanelComponent
+        MainPanelComponent,
+        MovieDetailModalComponent
     ],
     imports: [
         BrowserModule, 
@@ -57,6 +60,7 @@ import { MainPanelComponent } from "./panel/main-panel.component";
         NgbModule.forRoot()
         ],
     providers: [AuthService],
+    entryComponents: [MovieDetailModalComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

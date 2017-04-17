@@ -53,6 +53,17 @@ body {
 
 #movie-detail-poster {
     margin-top: -70px;
+    float: left;
+    margin-left: 40px;
+    padding-bottom: 30px;
+}
+
+#movie-content {
+    float: left;
+}
+
+.modal-lg {
+    max-width: 910px;
 }
 
 #movie-title {
@@ -112,8 +123,8 @@ body {
     color: rgba(0, 0, 0, 0.59);
 }
 
-#cast-wrapper > .thumbnail {
-    display: inline-block;
+#cast-wrapper {
+    padding-bottom: 20px;
 }
 
 #cast-info {
