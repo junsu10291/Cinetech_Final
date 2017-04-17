@@ -532,3 +532,11 @@ body {
     color: #607D8B;
     margin-top:10px;
 }
+
+#main-card {
+    background-color: #ff7e82;
+    line-height: 2;
+    font-family: system-ui;
+    font-size: 17px;
+    color: #fff;
+}

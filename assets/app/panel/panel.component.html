@@ -1,0 +1,20 @@
+
+<div id="in-theatres">
+    <h4> In Theatres Today </h4>
+    
+    <div class="col-md-3 no-padding-left"> 
+        <div class="card" id = "main-card" style="width: 20rem;">
+            <div id="main-card-title">
+                Rankings
+            </div>
+            <div class="card">
+                <span
+                    *ngFor="let movie of movies" 
+                    class="card-item">
+                    <div class="numberCircle">{{$index + 1}}</div>
+                    Movie Lorem Ipsum
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

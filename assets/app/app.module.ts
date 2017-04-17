@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselCaptionComponent } from "./carousel/carousel-caption.component";
 import { MainComponent } from "./main/main.component";
 import { MovieInputComponent } from "./movies/movie-input.component";
+import { PanelComponent } from "./panel/panel.component";
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { MovieInputComponent } from "./movies/movie-input.component";
         CarouselComponent,
         CarouselCaptionComponent,
         MainComponent,
-        MovieInputComponent
+        MovieInputComponent,
+        PanelComponent
     ],
     imports: [
         BrowserModule, 
