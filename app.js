@@ -9,8 +9,6 @@ var mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
 var movieRoutes = require('./routes/movie');
 var userRoutes = require('./routes/user');
-var actorRoutes = require('./routes/actor');
-
 
 var app = express();
 mongoose.connect('localhost:27017/cinetech');
@@ -36,7 +34,6 @@ app.use(function (req, res, next) {
 
 app.use('/movie', movieRoutes);
 app.use('/user', userRoutes);
-app.use('/actor', actorRoutes);
 app.use('/', appRoutes);
 
 

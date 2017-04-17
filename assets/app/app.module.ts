@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
+import { RateComponent } from "./stat/rate.component";
+import { RegionComponent } from "./stat/region.component";
+import { PersonalComponent } from "./personal/personal.component";
+import { ActorComponent } from "./stat/actor.component";
 
 import { AppComponent } from "./app.component";
 import { MessageComponent } from "./messages/message.component";
@@ -27,6 +32,7 @@ import { MovieGenreTopComponent } from "./movies/movie-genre-top.component";
 import { MainPanelComponent } from "./panel/main-panel.component";
 import { MovieDetailModalComponent } from "./movies/movie-detail-modal.component";
 import { MainRightPanelComponent } from "./panel/main-right-panel.component";
+import { ModalService } from "./modal/modal.service";
 
 
 @NgModule({
@@ -51,7 +57,11 @@ import { MainRightPanelComponent } from "./panel/main-right-panel.component";
         MovieGenreTopComponent,
         MainPanelComponent,
         MovieDetailModalComponent,
-        MainRightPanelComponent
+        MainRightPanelComponent,
+        PersonalComponent,
+        RateComponent,
+        RegionComponent,
+        ActorComponent
     ],
     imports: [
         BrowserModule, 
@@ -59,9 +69,10 @@ import { MainRightPanelComponent } from "./panel/main-right-panel.component";
         routing, 
         ReactiveFormsModule,
         HttpModule,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        ChartsModule
         ],
-    providers: [AuthService],
+    providers: [AuthService, ModalService],
     entryComponents: [MovieDetailModalComponent],
     bootstrap: [AppComponent]
 })

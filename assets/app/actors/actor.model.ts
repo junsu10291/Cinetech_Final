@@ -3,7 +3,6 @@ export class Actor{
     profilePath?: string;
     gender: string;
 
-
     constructor(name: string, profilePath?: string, gender?: string) {
         this.name = name;
         this.profilePath = profilePath;      

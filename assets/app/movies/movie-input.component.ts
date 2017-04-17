@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Movie } from "./movie.model";
 import { MovieDetailModalComponent } from "../movies/movie-detail-modal.component";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { ModalService } from "../modal/modal.service";
 
 @Component({
     selector: 'app-movie-input',
@@ -31,6 +32,9 @@ export class MovieInputComponent implements OnInit {
     Width: String = "";
     Height: String = "";
     fontSize: String = "20px";
+    modalRef = null;
+
+    constructor(private modalService: NgbModal, private modalCloseService: ModalService) {}
 
     ngOnInit() {
         this.Height = (this.elementWidth * 1.5) + "px";
@@ -43,15 +47,26 @@ export class MovieInputComponent implements OnInit {
         } else  {
             this.fontSize = "25px";
         }
+
+        this.modalCloseService.modalClose.subscribe(
+            result => this.closeModal(result)
+        );
     }
 
-    constructor(private modalService: NgbModal) {}
-
+    closeModal(modal : NgbModalRef ) {
+        if (this.modalRef != null) {
+            if (modal != this.modalRef) {
+                this.modalRef.close();
+            }
+        }
+    }
+    
     openModal() {
-        const modalRef = this.modalService.open(
+        this.modalRef = this.modalService.open(
             MovieDetailModalComponent, 
             { size: "lg" });
 
+        this.modalCloseService.alertOpenModal(this.modalRef);
         //modalRef.componentInstance.name = 'World';
     } 
 }

@@ -10,8 +10,8 @@ var schema = new Schema({
     country: {type: String},
     genre: {type: String},
     director: {type: String},
-    numRated: {type: number, required: true},
-    averageRatings: {type: number},
+    numRated: {type: Number, required: true},
+    averageRatings: {type: Number},
     synopsis: {type: String},
     cast: [{type: Schema.Types.ObjectId, ref: "Actor"}]
 
