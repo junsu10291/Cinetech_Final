@@ -22,6 +22,7 @@ import { CarouselCaptionComponent } from "./carousel/carousel-caption.component"
 import { MainComponent } from "./main/main.component";
 import { MovieInputComponent } from "./movies/movie-input.component";
 import { PanelComponent } from "./panel/panel.component";
+import { MovieStarsComponent } from "./movies/movie-stars.component";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { PanelComponent } from "./panel/panel.component";
         CarouselCaptionComponent,
         MainComponent,
         MovieInputComponent,
-        PanelComponent
+        PanelComponent,
+        MovieStarsComponent
     ],
     imports: [
         BrowserModule, 

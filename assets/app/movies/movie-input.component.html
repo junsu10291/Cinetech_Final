@@ -2,28 +2,20 @@
     class="card"
     (mouseover)="labelShow = true"
     (mouseleave)="labelShow = false"
-    (click)="modalTrigger()">
+    (click)="modalTrigger()"
+    [ngStyle]="{'width': elementWidth, 'height': elementHeight}">
     <img 
         class="card-img" 
-        [src]="movie.imagePath" 
-        [ngStyle]="{'width': elementWidth}">
+        [src]="movie.imagePath"
+        [ngStyle]="{'width': elementWidth, 'height': elementHeight}">
     
     <div 
-        class="card-img-overlay"
-        *ngIf="labelShow">
+        class="card-img-overlay card-img-custom"
+        *ngIf="true">
 
         <h4 class="card-title"> {{ movie.title }}</h4>
 
-        <div id="stars">
-            <span 
-                *ngFor="let star of stars"
-                [ngClass]="{'glyphicon-star': star.fill, 'glyphicon-star-empty': !star.fill}"
-                (mouseover)="focusStars(star.id)"
-                (mouseleave)="unfocusStars()"
-                class="glyphicon"
-                >
-                </span>
-        </div>
+        <app-movie-stars [numStars]="3"></app-movie-stars>
 
     </div>
 </div>

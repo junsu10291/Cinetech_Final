@@ -1,0 +1,11 @@
+<div id="stars">
+    <span 
+        *ngFor="let star of stars"
+        [ngClass]="{'fa-star': star.fill, 'fa-star-o': !star.fill}"
+        [ngStyle]="{'color': star.color}"
+        (mouseover)="focusStars(star.id)"
+        (mouseleave)="unfocusStars()"
+        class="fa fa-2x"
+        >
+        </span>
+</div>
