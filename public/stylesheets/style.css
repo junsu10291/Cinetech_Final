@@ -532,3 +532,7 @@ body {
     color: #607D8B;
     margin-top:10px;
 }
+
+.card-img-custom {
+    background-color: black;
+}
