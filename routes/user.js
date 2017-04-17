@@ -4,8 +4,7 @@ var User = require('../models/user');
 
 router.post('/', function (req, res, next) {
     var user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        userName: req.body.firstName,
         email: req.body.email, // encrypt later
         password: req.body.password
     });
@@ -26,7 +25,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/signin', function(req, res, next) {
-    User.findOne({email: req.body.email}, function(err, user) {
+    User.findOne({userName: req.body.userName}, function(err, user) {
         if (err) {
             return res.status(500).json({
                 message: "An error occured",

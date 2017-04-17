@@ -10,6 +10,7 @@ import { Movies } from '../movies/mock-movie';
         .card {
             background-color: #ff7e82;
         }
+
     `]
 })
   

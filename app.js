@@ -7,11 +7,13 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
-var messageRoutes = require('./routes/messages');
+var movieRoutes = require('./routes/movie');
 var userRoutes = require('./routes/user');
+var actorRoutes = require('./routes/actor');
+
 
 var app = express();
-mongoose.connect('localhost:27017/node-angular');
+mongoose.connect('localhost:27017/cinetech');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,9 +34,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/message', messageRoutes);
+app.use('/movie', movieRoutes);
 app.use('/user', userRoutes);
+app.use('/actor', actorRoutes);
 app.use('/', appRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
