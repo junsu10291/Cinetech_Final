@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Movie } from "./movie.model";
+import { MovieDetailModalComponent } from "../movies/movie-detail-modal.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-movie-input',
@@ -43,7 +45,13 @@ export class MovieInputComponent implements OnInit {
         }
     }
 
-    modalTrigger() {
+    constructor(private modalService: NgbModal) {}
 
-    }
+    openModal() {
+        const modalRef = this.modalService.open(
+            MovieDetailModalComponent, 
+            { size: "lg" });
+
+        //modalRef.componentInstance.name = 'World';
+    } 
 }
