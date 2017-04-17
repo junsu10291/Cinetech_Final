@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
     selector: 'app-movie-stars',
-    templateUrl: './movie-stars.component.html'
+    templateUrl: './movie-stars.component.html',
+    styles: [`
+         
+    `]
 })
 export class MovieStarsComponent implements OnInit {
     @Input() numStars : number;
