@@ -1,45 +1,21 @@
 import { Component, Input } from "@angular/core";
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
-    styles: [`
-    
-    `]
+    providers: [NgbCarouselConfig]
 })
+
 export class CarouselComponent {   
-    myInterval = 5000;
-    noWrapSlides = false;
-    active = 0;
-    currIndex = 0;
-    slides = [];
+    slides = 
+    [
+        {'img': "./img/carousel_1.jpg", 'info': {'label': "Label1", 'title': "Title1", 'avgRating': "Avg1", 'tags': "Tag1"}}, 
+        {'img': "./img/carousel_2.jpg", 'info': {'label': "Label2", 'title': "Title2", 'avgRating': "Avg2", 'tags': "Tag2"}}, 
+        {'img': "./img/carousel_3.jpg", 'info': {'label': "Label3", 'title': "Title3", 'avgRating': "Avg1", 'tags': "Tag3"}}
+    ];
 
-    addSlide() {
-        var newWidth = 600 + this.slides.length + 1;
-        this.slides.push({
-            image: '../../public/img/carousel_1.jpg',
-            text: ['Nice image','Awesome photograph','That is so cool','I love that'][this.slides.length % 4],
-            id: this.currIndex++
-        });
-    }
-
-    assignNewIndexesToSlides(indexes) {
-        for (var i = 0, l = this.slides.length; i < l; i++) {
-            this.slides[i].id = indexes.pop();
-        }
-    }
-
-    constructor() {
-        this.myInterval = 5000;
-        this.noWrapSlides = false;
-        this.active = 0;
-        this.currIndex = 0;
-        this.slides = [];
-
-        for (var i = 0; i < 4; i++) {
-            this.addSlide();
-        }
-
-        console.log(this.slides);
+    constructor(config: NgbCarouselConfig) {
+        
     }
 }

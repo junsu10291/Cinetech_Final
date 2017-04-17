@@ -17,6 +17,10 @@ import { HttpModule } from "@angular/http";
 import { AuthService } from "./auth/auth.service";
 import { NavBarComponent } from "./nav/nav-bar.component";
 import { CarouselComponent } from "./carousel/carousel.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselCaptionComponent } from "./carousel/carousel-caption.component";
+import { MainComponent } from "./main/main.component";
+import { MovieInputComponent } from "./movies/movie-input.component";
 
 @NgModule({
     declarations: [
@@ -31,14 +35,18 @@ import { CarouselComponent } from "./carousel/carousel.component";
         SigninComponent,
         SignupComponent,
         NavBarComponent,
-        CarouselComponent
+        CarouselComponent,
+        CarouselCaptionComponent,
+        MainComponent,
+        MovieInputComponent
     ],
     imports: [
         BrowserModule, 
         FormsModule, 
         routing, 
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        NgbModule.forRoot()
         ],
     providers: [AuthService],
     bootstrap: [AppComponent]

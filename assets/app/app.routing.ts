@@ -2,9 +2,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { MessagesComponent } from "./messages/messages.component";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { AUTH_ROUTES } from "./auth/auth.routes";
+import { MainComponent } from "./main/main.component"
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/recommendations', pathMatch:"full" },
+    { path: '', component: MainComponent },
     { path: 'recommendations', component: MessagesComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES }
 ];
