@@ -9,10 +9,10 @@
             </div>
             <div class="card">
                 <span
-                    *ngFor="let movie of movies" 
+                    *ngFor="let movie of movies let i = index"  
                     class="card-item">
-                    <div class="numberCircle">{{$index + 1}}</div>
-                    Movie Lorem Ipsum
+                    <div class="numberCircle">{{ i + 1 }}</div>
+                    {{ movie.title }}
                 </span>
             </div>
         </div>

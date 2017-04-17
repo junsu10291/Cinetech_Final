@@ -1,16 +1,22 @@
 import { Component, OnInit } from "@angular/core"
+import { Movie } from '../movies/movie.model';
+import { Movies } from '../movies/mock-movie';
+
 
 @Component ({
     selector: 'app-panel',
-    templateUrl: './panel.component.html'
+    templateUrl: './panel.component.html',
+    styles: [`
+        .card {
+            background-color: #ff7e82;
+        }
+    `]
 })
   
 export class PanelComponent implements OnInit {
     movies = []
     ngOnInit() {
-        for (let i = 0; i < 15; i++) {
-            this.movies.push({"id": i, "fill": false});
-        }
+        this.movies = Movies;
     }
 
 }

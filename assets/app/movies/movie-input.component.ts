@@ -5,7 +5,7 @@ import { Movie } from "./movie.model";
     selector: 'app-movie-input',
     templateUrl: './movie-input.component.html',
     styles: [`
-
+ 
     `]
 })
 export class MovieInputComponent {
