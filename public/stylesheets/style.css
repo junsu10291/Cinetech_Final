@@ -192,7 +192,7 @@ body {
     margin-top: 20px;
     float: left;
     background-color:rgb(255, 255, 255);
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     font-family: Arial, sans-serif;
     font-style: normal;
@@ -441,7 +441,7 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
     background-color: rgb(255, 255, 255);
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     font-family: Arial, sans-serif;
     font-style: normal;
@@ -480,7 +480,7 @@ body {
     overflow-y: hidden;
     padding-left: 15px;
     background-color:rgb(255, 255, 255);
-    border-radius: 10px;
+    border-radius: 5px;
     /*background: linear-gradient(rgba(255, 128, 132, 0.15), #fff);*/
     margin-bottom: 20px;
 }
@@ -524,8 +524,8 @@ body {
 .profile-card-blocks {
     background-color: linear-gradient(rgba(255, 128, 132, 0.15), #fff);
     display: inline-block;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 45px;
+    padding-right: 45px;
 
 }
 
@@ -533,7 +533,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 900;
     color: #545151;
 }
