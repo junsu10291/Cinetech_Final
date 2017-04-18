@@ -194,7 +194,7 @@ body {
     background-color:rgb(255, 255, 255);
     border-radius: 10px;
     text-align: center;
-    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;
@@ -443,7 +443,7 @@ body {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     text-align: center;
-    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;
@@ -464,7 +464,7 @@ body {
 }
 
 #genre-title {
-    font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-style: normal;
     font-variant: normal;
     font-weight: 900;
@@ -512,28 +512,24 @@ body {
 
 .profile-info {
     display: inline-block;
-    width: 75%;
     margin-left: 5%;
 }
 
 .profile-card-picture-wrapper {
-    width: 70%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 20px;
 }
 
 .profile-card-blocks {
-    width: 25%;
     background-color: linear-gradient(rgba(255, 128, 132, 0.15), #fff);
     display: inline-block;
-    height: 100%;
-    float: left;
+    padding-left: 35px;
+    padding-right: 35px;
 
 }
 
 .profile-card-blocks-content-wrapper {
-    width: 70%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -542,11 +538,6 @@ body {
     color: #545151;
 }
 
-.custom-film-glyphicon {
-    font-size: 70px;
-    color: #607D8B;
-    margin-top:10px;
-}
 
 #main-card {
     background-color: #ff7e82;
