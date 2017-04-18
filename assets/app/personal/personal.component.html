@@ -10,8 +10,8 @@
             <div class="col-md-9 profile-card profile-info">  
                         <div class="profile-card-blocks-content-wrapper">
                             <div *ngFor="let content of contents" class = "profile-card-blocks">
-                                    <i [class]="content.icon" aria-hidden="true" style="font-size:75px; padding-bottom: 10px;" ></i>
-                                    <div class="profile-card-blocks-number">
+                                    <i [class]="content.icon" aria-hidden="true" style="font-size:85px; padding-bottom: 10px;" ></i>
+                                    <div class="profile-card-blocks-number" style = "font-size: 25px; color: grey">
                                         {{content.figure}}
                                     </div>
                                     <div class="profile-card-blocks-text">
@@ -22,9 +22,9 @@
             </div>
         </div>
 
-
-    <rate-chart></rate-chart>
-    <region-chart></region-chart>
-    <actor-chart></actor-chart>
-
+    <div class = "row">
+        <rate-chart style="display: inline-block" ></rate-chart>
+        <region-chart style="display: inline-block"></region-chart>
+        <actor-chart style="display: inline-block"></actor-chart>
+    <div>
 </div>

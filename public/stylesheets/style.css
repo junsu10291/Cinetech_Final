@@ -191,7 +191,7 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
     float: left;
-    background-color:rgb(255, 255, 255);
+    background-color:	#F0F0F0;
     border-radius: 5px;
     text-align: center;
     font-family: Arial, sans-serif;
@@ -498,9 +498,9 @@ body {
 }
 
 .profile-picture {
-    width: 20%;
     display: inline-block;
     width: 20%;
+    height: 190px;
     display: inline-block;
     font-size: 21px;
 }
@@ -513,6 +513,7 @@ body {
 .profile-info {
     display: inline-block;
     margin-left: 5%;
+    background-color: transparent;
 }
 
 .profile-card-picture-wrapper {
@@ -542,7 +543,27 @@ body {
 #main-card {
     background-color: #ff7e82;
     line-height: 2;
-    font-family: system-ui;
+    font-family: Arial, Sans-serif;
     font-size: 17px;
     color: white;
+    padding-left: 15px;
+}
+
+
+
+.graph {
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+i {
+    color: 	#636c72;
+    font-size: 85px;
+}
+.card {
+    border-color: transparent;
 }

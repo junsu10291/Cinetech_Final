@@ -8,7 +8,7 @@ import { Movies } from '../movies/mock-movie';
     templateUrl: './panel.component.html',
     styles: [`
         .card {
-            background-color: #ff7e82;
+            background-color: rgba(255, 125, 129, 0.68);
         }
 
         .main-left-panel {

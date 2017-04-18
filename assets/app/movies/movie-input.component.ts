@@ -19,7 +19,7 @@ import { ModalService } from "../modal/modal.service";
         }   
 
         .custom-card:hover {
-            border-color: #337ab7;
+            border-color: #898989;
         }
     `]
 })
