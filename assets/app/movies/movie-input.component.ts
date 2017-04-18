@@ -26,6 +26,7 @@ import { ModalService } from "../modal/modal.service";
 export class MovieInputComponent implements OnInit {
     @Input() movie: Movie;
     @Input() elementWidth: number;
+    @Input() elementHeight: number;
 
     ImgWidth: String = "";
     ImgHeight: String= "";
@@ -37,9 +38,15 @@ export class MovieInputComponent implements OnInit {
     constructor(private modalService: NgbModal, private modalCloseService: ModalService) {}
 
     ngOnInit() {
-        this.Height = (this.elementWidth * 1.5) + "px";
+        if (this.elementHeight == null) {
+            this.Height = (this.elementWidth * 1.5) + "px";
+            this.ImgHeight = (this.elementWidth * 1.5 - 2) + "px";
+        } else {
+            this.Height = this.elementHeight + "px";
+            this.ImgHeight = (this.elementHeight - 2) + "px";
+        }
+
         this.Width = this.elementWidth + "px";
-        this.ImgHeight = (this.elementWidth * 1.5 - 2) + "px";
         this.ImgWidth = (this.elementWidth - 2) + "px";
 
         if (this.elementWidth <= 250) {

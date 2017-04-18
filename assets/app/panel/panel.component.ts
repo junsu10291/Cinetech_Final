@@ -11,6 +11,13 @@ import { Movies } from '../movies/mock-movie';
             background-color: #ff7e82;
         }
 
+        .main-left-panel {
+            width: 25%;
+            display: inline-block;
+            float: left;
+        }
+
+
     `]
 })
   

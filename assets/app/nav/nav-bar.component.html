@@ -1,3 +1,102 @@
+<template #signin let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="login-register-form">
+      <div class="panel-login">
+        
+        <div class="panel-heading">
+          <div class="row">
+							<div class="col-md-12">
+                <input type="submit" id="facebook-login" class="form-control btn btn-login" value="Log in with Facebook">
+              </div>
+
+            <div class="col-md-12">
+                <input type="submit" id="google-login" class="form-control btn btn-login" value="Log in with Google">
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form id="login-form" role="form" style="display: block;">
+                <div class="form-group">
+                  <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                  <input type="checkbox" name="remember" id="remember">
+                  <label for="remember"> Remember Me</label>
+                                      <a class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input type="submit" id="plain-login" class="form-control btn btn-login" value="Log in">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template #signup let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="login-register-form">
+      <div class="panel-login">
+        
+        <div class="panel-heading">
+          <div class="row">
+							<div class="col-md-12">
+                <input type="submit" id="facebook-login" class="form-control btn btn-login" value="Sign up with Facebook">
+              </div>
+
+            <div class="col-md-12">
+                <input type="submit" id="google-login" class="form-control btn btn-login" value="Sign up with Google">
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form id="login-form" role="form" style="display: block;">
+                <div class="form-group">
+                  <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input type="submit" id="plain-login" class="form-control btn btn-login" value="Sign Up">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <nav class="navbar navbar-toggleable-md navbar-light fixed-top" style="background-color: #e3f2fd;">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,7 +106,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Recommendation <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/recommendation">Recommendation <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/personal">Personal Page</a>
@@ -20,8 +119,15 @@
     </form>
 
     <form class="form-inline">
-        <button class="btn btn-primary" type="button"> Sign In </button>
-        <button class="btn btn-primary" type="button"> Sign Up </button>
+        <button 
+          (click)="open(signin)" 
+          class="btn btn-primary" 
+          type="button" 
+          style="margin-right: 10px"> Sign In </button>
+         <button 
+          (click)="open(signup)" 
+          class="btn btn-primary" 
+          type="button"> Sign Up </button>
     </form>
   </div>
 </nav>

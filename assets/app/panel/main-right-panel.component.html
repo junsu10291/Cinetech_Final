@@ -1,4 +1,31 @@
 <!--RIGHT PANEL-->
-<div class="col-md-9 no-padding-left main-right-panel">
-    
+<div class="no-padding-left main-right-panel">
+    <div class="main-right-panel-big">
+        <app-movie-input
+            [movie]="movie"
+            [elementWidth]="380"
+            [elementHeight]="528"></app-movie-input>
+    </div>
+
+    <div class="main-right-panel-small">
+        <app-movie-input
+            class="main-right-panel-grid"
+            [movie]="movie"
+            [elementWidth]="170"></app-movie-input>
+        <app-movie-input
+            class="main-right-panel-grid"
+            style="margin-left: 30px;"
+            [movie]="movie"
+            [elementWidth]="170"></app-movie-input>
+        <app-movie-input
+            class="main-right-panel-grid"
+            style="margin-top: 18px;"
+            [movie]="movie"
+            [elementWidth]="170"></app-movie-input>
+        <app-movie-input
+            class="main-right-panel-grid"
+            style="margin-top: 18px; margin-left: 30px"
+            [movie]="movie"
+            [elementWidth]="170"></app-movie-input>
+    </div>
 </div>

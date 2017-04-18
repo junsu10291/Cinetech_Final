@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
     selector: 'app-nav-bar',
@@ -10,4 +12,11 @@ import { Component } from "@angular/core";
     `]
 })
 
-export class NavBarComponent {}
+export class NavBarComponent {
+
+    constructor(private modalService: NgbModal) {}
+
+    open(content) {
+        this.modalService.open(content);
+    }
+}
