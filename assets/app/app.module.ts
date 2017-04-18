@@ -6,6 +6,7 @@ import { RateComponent } from "./stat/rate.component";
 import { RegionComponent } from "./stat/region.component";
 import { PersonalComponent } from "./personal/personal.component";
 import { ActorComponent } from "./stat/actor.component";
+import { RecommendationComponent } from "./recommendation/recommendation.component";
 
 import { AppComponent } from "./app.component";
 import { MessageComponent } from "./messages/message.component";
@@ -61,7 +62,8 @@ import { ModalService } from "./modal/modal.service";
         PersonalComponent,
         RateComponent,
         RegionComponent,
-        ActorComponent
+        ActorComponent,
+        RecommendationComponent,
     ],
     imports: [
         BrowserModule, 

@@ -1,0 +1,10 @@
+<div class="container">
+    <app-nav-bar></app-nav-bar>
+        <app-movie-input
+            *ngFor = "let movie of movies"
+            [movie] = "movie"
+            [elementWidth] = 240 
+            style="display: inline-block; padding-right: 30px; padding-bottom: 20px">
+            >
+        </app-movie-input>
+</div>

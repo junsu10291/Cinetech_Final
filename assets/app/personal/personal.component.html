@@ -1,3 +1,33 @@
-<rate-chart></rate-chart>
-<region-chart></region-chart>
-<actor-chart></actor-chart>
+<div class="container">
+        <div class="profile-card-wrapper">
+            <div class="profile-card profile-picture">  
+                <div class="profile-card-picture-wrapper">
+                    <img [src]=profileImage class="img-circle" id="account-image">
+                    <div id="account-name"> Sangha Choi </div>
+                </div>   
+            </div>     
+            
+            <div class="profile-card profile-info">  
+                <div class="profile-card-blocks">
+                        <div class="profile-card-blocks-content-wrapper">
+                            <div *ngFor="let content of contents" class = "profile-card-blocks">
+                                <i [class]="content.icon" aria-hidden="true" ></i>
+                                <div class="profile-card-blocks-number">
+                                    {{content.figure}}
+                                </div>
+                                <div class="profile-card-blocks-text">
+                                    {{content.text}}
+                                </div>
+                            </div>    
+                        
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+    <rate-chart></rate-chart>
+    <region-chart></region-chart>
+    <actor-chart></actor-chart>
+
+</div>
