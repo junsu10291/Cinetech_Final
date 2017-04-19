@@ -5,7 +5,7 @@ import { Movie } from "./movie.model";
     selector: 'app-movie-genre-top',
     templateUrl: './movie-genre-top.component.html',
     styles: [`
-
+        
     `]
 })
 export class MovieGenreTopComponent {
