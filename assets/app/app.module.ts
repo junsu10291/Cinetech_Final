@@ -34,6 +34,7 @@ import { MainPanelComponent } from "./panel/main-panel.component";
 import { MovieDetailModalComponent } from "./movies/movie-detail-modal.component";
 import { MainRightPanelComponent } from "./panel/main-right-panel.component";
 import { ModalService } from "./modal/modal.service";
+import { MovieService } from "./movies/movie.service";
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import { ModalService } from "./modal/modal.service";
         NgbModule.forRoot(),
         ChartsModule
         ],
-    providers: [AuthService, ModalService],
+    providers: [AuthService, ModalService, MovieService],
     entryComponents: [MovieDetailModalComponent],
     bootstrap: [AppComponent]
 })

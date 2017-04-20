@@ -16,7 +16,7 @@ export class RecommendationComponent implements OnInit {
     movies : Movie[] = [];
     
     ngOnInit() {
-        this.movies = Movies;
+        this.movies = Movies; //this should be movieservice's getRecommendation methods
     }
 
 }

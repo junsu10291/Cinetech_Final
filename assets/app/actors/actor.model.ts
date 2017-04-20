@@ -1,14 +1,8 @@
-export class Actor{
-    name: string;
-    profilePath?: string;
-    gender: string;
+import { MoviesCast } from "./moviesCast.model";
 
-    constructor(name: string, profilePath?: string, gender?: string) {
-        this.name = name;
-        this.profilePath = profilePath;      
-        this.gender = gender; 
-    }
+export class Actor {
+    constructor(
+        private name: string, 
+        private profilePath?: string,
+        private moviesCast?: [MoviesCast]) {}
 }
-
-
-
