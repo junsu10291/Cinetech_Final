@@ -63,7 +63,7 @@ import { ModalService } from "./modal/modal.service";
         RateComponent,
         RegionComponent,
         ActorComponent,
-        RecommendationComponent,
+        RecommendationComponent
     ],
     imports: [
         BrowserModule, 
