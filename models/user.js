@@ -8,7 +8,7 @@ var schema = new Schema({
     email: {type: String, required: true, unique: true},
     numRated: {type: Number, required: true},
     movieRatings : [{
-        movie: String,
+        movie: {type: Schema.Types.ObjectId, ref: "Movie"},
         rating: Number
     }]
 });
