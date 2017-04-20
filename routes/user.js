@@ -1,56 +1,62 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 router.post('/', function (req, res, next) {
+    console.log("hi");
     var user = new User({
-        userName: req.body.firstName,
-        email: req.body.email, // encrypt later
-        password: req.body.password
+        userName: req.body.userName,
+        password: bcrypt.hashSync(req.body.password, 10),
+        email: req.body.email
     });
 
     user.save(function(err, result) {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: "hihi",
                 error: err
             });
         }
 
         res.status(201).json({
-            message: "User Created",
+            message: "user created",
             obj: result
         });
-    }); 
+    });
 });
 
-router.post('/signin', function(req, res, next) {
-    User.findOne({userName: req.body.userName}, function(err, user) {
+router.post('/signin', function (req, res, next) {
+    User.findOne({ userName: req.body.userName }, function(err, user) {
         if (err) {
             return res.status(500).json({
-                message: "An error occured",
+                title: "hihi",
                 error: err
             });
         }
 
         if (!user) {
             return res.status(401).json({
-                message: "User not found",
-                error: {message: "User could not be found"}
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
             });
         }
 
-        const enteredPassword = req.body.password;
-        const compare = user.password;
-
-        if (enteredPassword == compare) {
-            // password is correct
-        } else {
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(401).json({
-                message: "User not found",
-                error: {message: "User could not be found"}
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
             });
         }
+
+        var token = jwt.sign({ user: user }, 'secret', {expiresIn: 7200});
+        
+        res.status(200).json({
+            message: "successfully logged in",
+            token: token,
+            userId: user._id
+        });
     });
 });
 

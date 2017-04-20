@@ -9,8 +9,7 @@ import { RecommendationComponent } from "./recommendation/recommendation.compone
 const APP_ROUTES: Routes = [
     { path: '', component: MainComponent },
     { path: 'personal', component: PersonalComponent },
-    { path: 'recommendation', component: RecommendationComponent },
-    { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
+    { path: 'recommendation', component: RecommendationComponent }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
