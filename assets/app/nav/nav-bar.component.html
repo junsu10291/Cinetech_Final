@@ -2,7 +2,6 @@
   <div class="modal-body">
     <div class="login-register-form">
       <div class="panel-login">
-        
         <div class="panel-heading">
           <div class="row">
 							<div class="col-md-12">
@@ -19,12 +18,12 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
-              <form id="login-form" role="form" style="display: block;">
+              <form id="login-form" role="form" style="display: block;" [formGroup]="signInForm" (ngSubmit)="onSignInSubmit()">
                 <div class="form-group">
-                  <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="">
+                  <input type="text" id="username" class="form-control" placeholder="Username" value="" formControlName="userName">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Password" formControlName="password">
                 </div>
 
                 <div class="form-group">
@@ -36,7 +35,7 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-12">
-                      <input type="submit" id="plain-login" class="form-control btn btn-login" value="Log in">
+                      <input type="submit" id="plain-login" class="form-control btn btn-login" value="Log in" [disabled]="!signInForm.valid">
                     </div>
                   </div>
                 </div>
@@ -56,7 +55,7 @@
         
         <div class="panel-heading">
           <div class="row">
-							<div class="col-md-12">
+              <div class="col-md-12">
                 <input type="submit" id="facebook-login" class="form-control btn btn-login" value="Sign up with Facebook">
               </div>
 
@@ -70,21 +69,42 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
-              <form id="login-form" role="form" style="display: block;">
+              <form id="login-form" role="form" style="display: block;" [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()">
                 <div class="form-group">
-                  <input type="text" name="username" id="username" class="form-control" placeholder="Username" value="">
+                  <input 
+                    type="text" 
+                    id="username" 
+                    class="form-control" 
+                    placeholder="Username" 
+                    value=""
+                    formControlName="userName">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                  <input 
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Password"
+                    formControlName="password">
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                  <input 
+                    type="email" 
+                    id="email" 
+                    class="form-control" 
+                    placeholder="Email"
+                    formControlName="email">
                 </div>
 
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-12">
-                      <input type="submit" id="plain-login" class="form-control btn btn-login" value="Sign Up">
+                      <input 
+                        type="submit" 
+                        id="plain-login" 
+                        class="form-control btn btn-login" 
+                        value="Sign Up"
+                        [disabled]="!signUpForm.valid">
                     </div>
                   </div>
                 </div>
@@ -120,15 +140,23 @@
 
     <form class="form-inline">
         <button 
+          *ngIf="!isLoggedIn()"
           (click)="open(signin)" 
           class="btn btn-primary" 
           type="button" 
-          style="margin-right: 10px; background-color: #A9A9A9	; border-color: 	#A9A9A9	"> Sign In </button>
-         <button 
+          style="margin-right: 10px; background-color: #A9A9A9	; border-color:	#A9A9A9	"> Sign In </button>
+        <button 
+          *ngIf="!isLoggedIn()"
           (click)="open(signup)" 
           class="btn btn-primary" 
           type="button"
-          style= " background-color: 	#A9A9A9	; border-color: 	#A9A9A9	"> Sign Up </button>
+          style= "margin-right: 10px; background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Sign Up </button>
+        <button 
+          *ngIf="isLoggedIn()"
+          (click)="logout()"
+          class="btn btn-primary" 
+          type="button"
+          style= " background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Log Out </button>
     </form>
   </div>
 </nav>
