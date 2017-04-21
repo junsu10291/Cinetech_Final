@@ -4,33 +4,55 @@ var Movie1 = require('../models/movie');
 var User = require('../models/user');
 
 router.get('/topMovies/:genre', function(req, res, next) {
-    console.log("routerouteroute");
     let genre = req.params.genre;
 
-    Movie1.find({"genre": genre}).exec(function(err, movies) {
-        if (err) {
-            return res.status(500).json({
-                title: "An error occured",
-                error: err
-            });
-        }
+    if(genre.toString() === "recommendation") {
+        Movie1.find().sort('-popularity').limit(20)
+        .exec(function(err, movies) {
+            if (err) {
+                return res.status(500).json({
+                    title: "An error occured",
+                    error: err
+                });
+            }
 
-        if (!movies) {
-            return res.status(500).json({
-                title: "Couldn't find movie",
-                error: err
-            });
-        }   
+            if (!movies) {
+                return res.status(500).json({
+                    title: "Couldn't find any movies",
+                    error: err
+                });
+            }   
 
-        res.status(200).json({
-            message: "success",
-            obj: movies
+            res.status(200).json({
+                message: "success",
+                obj: movies
+            });
         });
-    });
+    } else {
+        Movie1.find({"genre": genre}).exec(function(err, movies) {
+            if (err) {
+                return res.status(500).json({
+                    title: "An error occured",
+                    error: err
+                });
+            }
+
+            if (!movies) {
+                return res.status(500).json({
+                    title: "Couldn't find movie",
+                    error: err
+                });
+            }   
+
+            res.status(200).json({
+                message: "success",
+                obj: movies
+            });
+        });
+    }    
 });
 
 router.get('/:userId/:movieId', function(req, res, next) {
-    console.log("get stars!!");
     let userId = req.params.userId;
     let movieId = req.params.movieId;
     var rating = 0;
