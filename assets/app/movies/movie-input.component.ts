@@ -77,6 +77,7 @@ export class MovieInputComponent implements OnInit {
     }
     
     openModal() {
+        console.log("open modal");
         this.modalRef = this.modalService.open(
             MovieDetailModalComponent, 
             { size: "lg" });

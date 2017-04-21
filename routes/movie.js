@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Movie1 = require('../models/movie');
+var User = require('../models/user');
 
 router.get('/topMovies/:genre', function(req, res, next) {
     console.log("routerouteroute");
@@ -28,12 +29,13 @@ router.get('/topMovies/:genre', function(req, res, next) {
     });
 });
 
-router.get('/:username/:movieId', function(req, res, next) {
-    let username = req.params.username;
+router.get('/:userId/:movieId', function(req, res, next) {
+    console.log("get stars!!");
+    let userId = req.params.userId;
     let movieId = req.params.movieId;
-    var score = 0;
+    var rating = 0;
 
-    User.findOne({userName: username}, function(err, user) {
+    User.findOne({'_id': userId}, function(err, user) {
         if (err) {
             return res.status(500).json({
                 title: "An error occured",
@@ -41,19 +43,99 @@ router.get('/:username/:movieId', function(req, res, next) {
             });
         }
 
-        var movies = user.map(function(user) { return user.movieRatings; });
-        
+        if (!user) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        var movies = user.movieRatings;
+        console.log(user);
+        console.log(movieId);
+
         for (let i =0; i < movies.length; i ++) {
-            if (movies[i].movie === movieId) {
-                score = movies[i].score;
+            if (movies[i].movie.toString() === movieId) {
+                rating = movies[i].rating;
             }
         }
 
         res.status(200).json({
             message: "success",
-            obj: score
+            obj: rating
         });
     });
+});
+
+router.patch('/updateStars', function(req, res, next) {
+    let userId = req.body.userId;
+    let movieId = req.body.movieId;
+    let rating = req.body.rating;
+    let foundMovie = false;
+
+    User.findOne({'_id': userId}, function(err, object) {
+        if (err) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        if (!object) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        console.log("user");
+        console.log(object);
+
+        let movieRatings = object.movieRatings;
+
+        for (let i = 0; i < movieRatings.length; i++) {
+            if (movieRatings[i].movie.toString() === movieId) {
+                movieRatings[i].rating = rating;
+                foundMovie = true;
+            }
+        }
+
+        if (!foundMovie) {
+            movieRatings.push({'movie': movieId, 'rating': rating});
+        }
+
+        object.save(function(err, saveRes) {
+            if (err) {
+                return res.status(500).json({
+                    title: "An error occured",
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: "success",
+                obj: rating
+            });
+        });
+    });
+
+    // User.update({'userId': userId, 'movieRatings.movie': movieId}, 
+    // { '$set' : {'movieRatings.$.rating': rating}, '$inc' : {'numRated': 1}},
+    
+    //     function(err, object) {
+    //         if (err) {
+    //             return res.status(500).json({
+    //                 title: "An error occured",
+    //                 error: err
+    //             });
+    //         }
+
+    //         res.status(200).json({
+    //             message: "success",
+    //             obj: rating
+    //         });
+    //     }
+    // );
 });
 
 module.exports = router;

@@ -23,10 +23,14 @@ export class MovieStarsComponent implements OnInit {
             this.stars.push({"id": i, "fill": false, "color": "black"});
         }
 
-        this.fillStars(this.numStars);
-
         this.movieService.getStars(localStorage.getItem('userId'), this.movie.id)
-            .subscribe(numStars => this.numStars = numStars);
+            .subscribe(
+                response => {
+                    console.log(response);
+                    this.numStars = response.obj;
+                    this.fillStars(this.numStars);
+                }
+            );
     }
 
     focusStars(starId) {
@@ -34,7 +38,7 @@ export class MovieStarsComponent implements OnInit {
     }
 
     unfocusStars() {
-        for (let i = 0; i < this.stars.length; i++) {
+        for(let i = 0; i < this.stars.length; i++) {
             this.stars[i].fill = false;
             this.stars[i].color = "black";
         }
@@ -47,10 +51,19 @@ export class MovieStarsComponent implements OnInit {
         }
     }
 
-    movieClick(starId) {
-        this.movieService.updateStars(localStorage.getItem('userId'), this.movie.id, starId)
-            .subscribe(
-                result => console.log(result)
-            );
+    movieClick(starId, event) {
+        console.log("movie stars click!");
+        this.movieService.updateStars(
+            localStorage.getItem('userId'), 
+            this.movie.id, 
+            starId)
+                .subscribe(
+                    result => {
+                        console.log(result); 
+                        this.numStars = result.obj;
+                    }
+                );
+
+        event.stopPropagation();
     }
 }

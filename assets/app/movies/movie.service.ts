@@ -40,16 +40,16 @@ export class MovieService {
 
     getStars(user, movieId) {
         return this.http.get("http://localhost:3000/movie/" + user + "/" + movieId)
-                    .map((response: Response) => response)
+                    .map((response: Response) => response.json())
                     .catch((error: Response) => Observable.throw(error));
     }
 
     updateStars(user, movieId, rating) {
-        const body = JSON.stringify(rating);
+        let object = {'rating': rating, 'userId': user, 'movieId': movieId};
+        const body = JSON.stringify(object);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        // does not send the request, simply sets up the observable
-        return this.http.patch('http://localhost:3000/movie/' + user + "/" + movieId, body, {headers: headers})
+        return this.http.patch('http://localhost:3000/movie/updateStars', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }    

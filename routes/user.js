@@ -5,11 +5,11 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 router.post('/', function (req, res, next) {
-    console.log("hi");
     var user = new User({
         userName: req.body.userName,
         password: bcrypt.hashSync(req.body.password, 10),
-        email: req.body.email
+        email: req.body.email,
+        numRated: 0
     });
 
     user.save(function(err, result) {

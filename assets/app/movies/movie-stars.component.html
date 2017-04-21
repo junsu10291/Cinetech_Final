@@ -1,7 +1,7 @@
-<div id="stars">
+<div id="stars" (mouseleave)="fillStars(numStars)">
     <span 
         *ngFor="let star of stars"
-        (click)="movieClick(star.id)"
+        (click)="movieClick(star.id, $event)"
         [ngClass]="{'fa-star': star.fill, 'fa-star-o': !star.fill}"
         [ngStyle]="{'color': star.color}"
         (mouseover)="focusStars(star.id)"
