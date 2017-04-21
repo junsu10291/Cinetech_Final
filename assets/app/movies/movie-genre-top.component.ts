@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Movie } from "./movie.model";
 
 @Component({
@@ -8,7 +8,11 @@ import { Movie } from "./movie.model";
         
     `]
 })
-export class MovieGenreTopComponent {
+export class MovieGenreTopComponent implements OnInit {
     @Input() Genre : String; 
     @Input() MovieList : Movie[];
+
+    ngOnInit() {
+        this.MovieList = this.MovieList;
+    }
 }

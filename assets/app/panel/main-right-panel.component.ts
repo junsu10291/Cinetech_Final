@@ -6,7 +6,7 @@ import { Movie } from '../movies/movie.model';
     templateUrl: './main-right-panel.component.html',
     styles: [`
         .main-right-panel {  
-            width: 75%;
+            width: 74%;
             float: left;
             height: 545px;
             padding-left: 20px;

@@ -3,6 +3,6 @@
 
 <app-movie-genre-top 
     *ngFor="let object of genres"
-    [Genre]="object.genre" 
-    [MovieList]="object.list">
+    [Genre]="object?.genre" 
+    [MovieList]="object?.list">
     </app-movie-genre-top>

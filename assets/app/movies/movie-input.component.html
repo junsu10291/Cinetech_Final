@@ -6,14 +6,14 @@
     [ngStyle]="{'width': Width, 'height': Height}">
     <img 
         class="card-img" 
-        [src]="'http://image.tmdb.org/t/p/w342' + movie.poster_path"
+        [src]="'http://image.tmdb.org/t/p/w342' + movie?.poster_path"
         [ngStyle]="{'width': ImgWidth, 'height': ImgHeight}">    
     <div 
         [ngStyle]="{'font-size': fontSize, 'width': Width}"
         class="card-img-overlay card-img-custom"
         *ngIf="labelShow">
 
-        <div class="card-title"> {{ movie.title }}</div>
+        <div class="card-title"> {{ movie?.title }}</div>
         <div *ngIf="!loggedIn()">Sign In to Rate</div>
         <app-movie-stars 
             *ngIf="loggedIn()"

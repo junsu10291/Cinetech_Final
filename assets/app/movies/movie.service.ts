@@ -2,28 +2,44 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Rx";
-import { Movies } from "./mock-movie";
+import { Movie } from "./movie.model";
 
 @Injectable()
 export class MovieService {
     constructor(private http: Http) {}
 
-    url = "https://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=92ce809a9456df5f21835cf4ff480b80";
+    getTopMovies(genre) {
+        return this.http.get("http://localhost:3000/movie/topMovies/" + genre) 
+            .map((response: Response) => {
+                    console.log(response);
+                    const responseJson = response.json().obj;
+                    let movies : Movie[] = [];
+                    for (let movie of responseJson) {
+                        movies.push(
+                            new Movie(
+                                movie.title, 
+                                movie._id,
+                                movie.genre,
+                                movie.backdrop_path,
+                                movie.poster_path,
+                                movie.trailer_path,
+                                movie.popularity,
+                                movie.vote_count,
+                                movie.vote_average,
+                                movie.country,
+                                movie.overview,
+                                movie.cast)
+                        )
+                    }
 
-    getTopMovies(genre, k) {
-        // var movies = this.http.get("http://localhost.com/3000/topMovies/Theatre") // JSON
-        //     .map(
-        //         (response: Response) => response // change into list of Movies
-        //     )
-        //     .catch((error: Response) => Observable.throw(error));
-        // }
-
-        let movies = Movies;
-        return movies; 
+                    return movies;
+                }
+            )
+            .catch((error: Response) => Observable.throw(error.json()));   
     }
 
     getStars(user, movieId) {
-        return this.http.get("http://localhost.com/3000/" + user + "/" + movieId)
+        return this.http.get("http://localhost:3000/movie/" + user + "/" + movieId)
                     .map((response: Response) => response)
                     .catch((error: Response) => Observable.throw(error));
     }
@@ -33,7 +49,7 @@ export class MovieService {
         const headers = new Headers({'Content-Type': 'application/json'});
 
         // does not send the request, simply sets up the observable
-        return this.http.patch('http://localhost:3000/' + user + "/" + movieId, body, {headers: headers})
+        return this.http.patch('http://localhost:3000/movie/' + user + "/" + movieId, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }    

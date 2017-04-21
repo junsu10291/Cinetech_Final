@@ -23,24 +23,61 @@ export class MainComponent implements OnInit {
     constructor(private movieService : MovieService) {}
     
     ngOnInit() {
-        // this.movieService.getTopNowPlayingMovies(5)
-        //     .subscribe(
-        //         (movies : Movie[]) => {
-        //             this.topMovies = movies;
-        //             console.log(this.topMovies);
-        //     });
+        this.genres = [];
 
-        this.theatreTopMovies = this.movieService.getTopMovies("theatre", 5);
-        this.actionTopMovies = this.movieService.getTopMovies("action", 5);
-        this.comedyTopMovies = this.movieService.getTopMovies("comedy", 5);
-        this.fantasyTopMovies = this.movieService.getTopMovies("fantasy", 5);
-        this.scifiTopMovies = this.movieService.getTopMovies("scifi", 5);
+        this.movieService.getTopMovies("theatre")
+            .subscribe(
+                (movies: Movie[]) => {
+                    console.log("theatre movies: ");
+                    console.log(movies);
+                    this.theatreTopMovies = movies.splice(0, 15);
+                    this.genres.push(
+                        {'genre': "Theatre", 'list': this.theatreTopMovies}
+                    );
+            });
 
-        this.genres = [
-            {'genre': "Theatre", 'list': this.theatreTopMovies}, 
-            {'genre': "Action", 'list': this.actionTopMovies}, 
-            {'genre': "Comedy", 'list': this.comedyTopMovies}, 
-            {'genre': "Fantasy", 'list': this.fantasyTopMovies}, 
-            {'genre': "Science Fiction", 'list': this.scifiTopMovies}];
+        this.movieService.getTopMovies("Action")
+            .subscribe(
+                (movies: Movie[]) => {
+                    console.log("action movies: ");
+                    console.log(movies);
+                    this.actionTopMovies = movies;
+                    this.genres.push(
+                        {'genre': "Action", 'list': this.actionTopMovies}
+                    );
+            });
+
+        this.movieService.getTopMovies("Comedy")
+            .subscribe(
+                (movies: Movie[]) => {
+                    console.log("comedy movies: ");
+                    console.log(movies);
+                    this.comedyTopMovies = movies;
+                    this.genres.push(
+                        {'genre': "Comedy", 'list': this.comedyTopMovies}
+                    );
+            });
+
+        this.movieService.getTopMovies("Fantasy")
+            .subscribe(
+                (movies: Movie[]) => {
+                    console.log("fantasy movies: ");
+                    console.log(movies);
+                    this.fantasyTopMovies = movies;
+                    this.genres.push(
+                        {'genre': "Fantasy", 'list': this.fantasyTopMovies}
+                    );
+            });
+
+        this.movieService.getTopMovies("Science Fiction")
+            .subscribe(
+                (movies: Movie[]) => {
+                    console.log("scifi movies: ");
+                    console.log(movies);
+                    this.scifiTopMovies = movies;
+                    this.genres.push(
+                        {'genre': "Science Fiction", 'list': this.scifiTopMovies}
+                    );
+            });
     }
 }

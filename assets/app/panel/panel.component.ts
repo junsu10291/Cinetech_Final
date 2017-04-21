@@ -10,7 +10,7 @@ import { Movie } from "../movies/movie.model";
         }
 
         .main-left-panel {
-            width: 25%;
+            width: 26%;
             display: inline-block;
             float: left;
         }
