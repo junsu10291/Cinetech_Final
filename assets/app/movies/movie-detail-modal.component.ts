@@ -33,7 +33,7 @@ import { Movie } from "./movie.model";
 export class MovieDetailModalComponent {
     posterImage = "./img/default_poster.jpg";
     castImage = "./img/elle_fanning.jpeg";
-    movie = new Movie("20th century Women", "./img//default_poster.jpg");
+    movie = Movie[0];
 
     constructor(public activeModal: NgbActiveModal) {}
 }

@@ -33,6 +33,6 @@ import { Movies } from '../movies/mock-movie';
 export class MainRightPanelComponent implements OnInit {
     movie : Movie;
     ngOnInit() {
-        this.movie = new Movie("20th Century Women", "./img/default_poster.jpg");
+        this.movie = Movies[0];
     }
 }

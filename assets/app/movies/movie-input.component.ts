@@ -58,6 +58,13 @@ export class MovieInputComponent implements OnInit {
         this.modalCloseService.modalClose.subscribe(
             result => this.closeModal(result)
         );
+
+        if (!this.movie.poster_path.includes("http")) {
+            var baseString = "http://image.tmdb.org/t/p/w342";
+            var temp = new String(this.movie.poster_path);
+            var newString = baseString.concat(temp.toString());
+            this.movie.poster_path = newString;
+        }
     }
 
     closeModal(modal : NgbModalRef ) {

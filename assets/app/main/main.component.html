@@ -2,7 +2,7 @@
 <app-main-panel></app-main-panel>
 
 <app-movie-genre-top 
-    *ngFor="let list of [1,2,3,4]"
-    [Genre]="'Action'" 
-    [MovieList]="movies">
+    *ngFor="let object of genres"
+    [Genre]="object.genre" 
+    [MovieList]="object.list">
     </app-movie-genre-top>

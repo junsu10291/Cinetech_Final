@@ -4,18 +4,22 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
     title: {type: String, unique: true},
-    genres: {type: [String]},
-    backdropPath: {type: String},
-    posterPath: {type: String},
+    genre: {type: String},
+    backdrop_path: {type: String},
+    poster_path: {type: String},
     trailerPath: {type: String},
     popularity: {type: Number},
-    voteCount: {type: Number},
-    voteAverage: {type: Number },
+    vote_count: {type: Number},
+    vote_average: {type: Number },
     country: {type: String},
     overview: {type: String},
-    cast: [{type: Schema.Types.ObjectId, ref: "Actor"}]
+    cast : [{
+        name: String,
+        profilePath: String,
+        character: String
+    }]  
 });
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('Movie', schema);
+module.exports = mongoose.model('Movie1', schema);
