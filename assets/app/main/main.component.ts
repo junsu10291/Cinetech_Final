@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
     comedyTopMovies : Movie[] = [];
     fantasyTopMovies : Movie[] = [];
     scifiTopMovies : Movie[] = [];
+    slides = ["./img/carousel_1.jpg", "./img/carousel_2.jpg", "./img/carousel_3.jpg"];
 
     genres = [];
 
@@ -36,10 +37,10 @@ export class MainComponent implements OnInit {
         this.scifiTopMovies = this.movieService.getTopMovies("scifi", 5);
 
         this.genres = [
-            {'genre': "theatre", 'list': this.theatreTopMovies}, 
-            {'genre': "action", 'list': this.actionTopMovies}, 
-            {'genre': "comedy", 'list': this.comedyTopMovies}, 
-            {'genre': "fantasy", 'list': this.fantasyTopMovies}, 
-            {'genre': "scifi", 'list': this.scifiTopMovies}];
+            {'genre': "Theatre", 'list': this.theatreTopMovies}, 
+            {'genre': "Action", 'list': this.actionTopMovies}, 
+            {'genre': "Comedy", 'list': this.comedyTopMovies}, 
+            {'genre': "Fantasy", 'list': this.fantasyTopMovies}, 
+            {'genre': "Science Fiction", 'list': this.scifiTopMovies}];
     }
 }

@@ -1,5 +1,5 @@
-<app-carousel></app-carousel>
-<app-main-panel></app-main-panel>
+<app-carousel [slidePath]="slides"></app-carousel>
+<app-main-panel [MovieList]="theatreTopMovies"></app-main-panel>
 
 <app-movie-genre-top 
     *ngFor="let object of genres"

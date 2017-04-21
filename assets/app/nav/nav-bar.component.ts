@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from "../auth/auth.service";
 import { User } from "../auth/user.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -18,6 +18,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class NavBarComponent implements OnInit {
     signUpForm: FormGroup;
     signInForm: FormGroup;
+    openedModel: NgbModalRef;
+    signinError = false;
 
     ngOnInit() {
         this.signUpForm = new FormGroup({
@@ -38,7 +40,7 @@ export class NavBarComponent implements OnInit {
     constructor(private modalService: NgbModal, private authService: AuthService) {}
 
     open(content) {
-        this.modalService.open(content);
+        this.openedModel = this.modalService.open(content);
     }
 
     onSignUpSubmit() {
@@ -46,9 +48,13 @@ export class NavBarComponent implements OnInit {
         
         this.authService.signup(user)
             .subscribe(
-                data => console.log(data),
+                data => {
+                    console.log(data);
+                    this.openedModel.close();
+                },
                 error => console.log(error)
             );
+
         this.signUpForm.reset();
     }
     
@@ -60,8 +66,13 @@ export class NavBarComponent implements OnInit {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    this.openedModel.close();
+                    this.signinError = false;
                 },
-                error => console.log(error)
+                error => {
+                    console.log(error);
+                    this.signinError = true;
+                }
             );
 
         this.signInForm.reset();

@@ -32,6 +32,10 @@
                                       <a class="forgot-password">Forgot Password?</a>
                 </div>
 
+                <div class="form-group" *ngIf="signinError">
+                  <label style="color: red; font-weight: bold"> Sign In Failed: Please check your username / password </label>
+                </div>
+
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-12">

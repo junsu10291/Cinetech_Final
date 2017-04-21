@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Movie } from "../movies/movie.model";
 
 @Component({
     selector: "app-main-panel",
@@ -14,5 +15,5 @@ import { Component } from "@angular/core";
 })
 
 export class MainPanelComponent {
-    
+    @Input() MovieList : Movie[];
 }

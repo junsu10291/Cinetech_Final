@@ -1,18 +1,18 @@
-<app-carousel></app-carousel>
+<app-carousel [slidePath]="slides"></app-carousel>
 <div class="row">
     <div id="content" class="col-md-8">
         <div id="movie-info">
             <div class="col-md-4 col-md-offset-1" id="movie-detail-poster">
-                <img [src]="posterImage" class="detail-poster">
+                <img [src]="'http://image.tmdb.org/t/p/w342' + movie.poster_path" class="detail-poster">
             </div>
 
             <div class="col-md-7" id="movie-content">
                 <div id="movie-title">
-                    20TH CENTURY WOMEN
+                    {{ movie.title }}
                 </div>
 
                 <div id="movie-detail-rating">
-                    <app-movie-stars></app-movie-stars>
+                    <app-movie-stars [movie]="movie"></app-movie-stars>
 
                     <div id="detail-stars-text">
                         Average Rating: 4.2 (3,812 Reviews)
@@ -20,7 +20,7 @@
 
                     <h4 style="margin-bottom: 0"> RATE MOVIE: </h4>
 
-                    <app-movie-stars></app-movie-stars>    
+                    <app-movie-stars [movie]="movie"></app-movie-stars>    
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div id="synopsis">
             <h4>SYNOPSIS</h4>
             <p style="font-size: 13px; color: rgb(88, 85, 85);">
-                During the summer of 1979, a Santa Barbara single mom and boardinghouse landlord (Annette Bening) decides the best way she can parent her teenage son (Lucas Jade Zumann) is to enlist her young tenants - a quirky punk photographer (Greta Gerwig), a mellow handyman (Billy Crudup) and her son's shrewd best friend (Elle Fanning) - to serve as role models in a changing world.
+                {{ movie.overview }}
             </p>
         </div>
 
@@ -39,20 +39,16 @@
             <div class="row">
                 <!--CAST BLOCK-->
                 <div
-                    *ngFor="let actor of [1, 2, 3, 4, 5, 6]" 
+                    *ngFor="let actor of movie.cast" 
                     id="cast-wrapper" 
                     class="col-md-3">
-                    <img [src]="castImage" class="detail-modal-cast-image">
+                    <img [src]="'http://image.tmdb.org/t/p/w185' + actor.profilePath" class="detail-modal-cast-image">
                     <div id="cast-info">
-                        <div id="cast-name"> Elle Fanning </div>
-                        <div id="cast-as">as Julie</div>
+                        <div id="cast-name"> {{ actor.name }} </div>
+                        <div id="cast-as"> {{ actor.character }} </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div id="comments">
-            <h4> COMMENTS?? </h4>
         </div>
     </div>
 
@@ -60,7 +56,7 @@
     <div id="side-bar" class="col-md-4">
         <div id="trailer">
             <div class="embed-trailer embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6JnFaltqnAY"></iframe>
+                <iframe class="embed-responsive-item" [src]="'http://www.youtube.com/embed' + movie.trailer_path | safe"></iframe>
             </div>
         </div>
 
@@ -79,6 +75,3 @@
     </div>
 
 </div>
-
-
-

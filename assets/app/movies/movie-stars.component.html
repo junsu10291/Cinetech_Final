@@ -1,6 +1,7 @@
 <div id="stars">
     <span 
         *ngFor="let star of stars"
+        (click)="movieClick(star.id)"
         [ngClass]="{'fa-star': star.fill, 'fa-star-o': !star.fill}"
         [ngStyle]="{'color': star.color}"
         (mouseover)="focusStars(star.id)"

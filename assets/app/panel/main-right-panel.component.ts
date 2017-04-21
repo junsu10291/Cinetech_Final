@@ -1,7 +1,5 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, Input } from "@angular/core"
 import { Movie } from '../movies/movie.model';
-import { Movies } from '../movies/mock-movie';
-
 
 @Component({
     selector: 'app-main-right-panel',
@@ -30,9 +28,6 @@ import { Movies } from '../movies/mock-movie';
     `]
 })
 
-export class MainRightPanelComponent implements OnInit {
-    movie : Movie;
-    ngOnInit() {
-        this.movie = Movies[0];
-    }
+export class MainRightPanelComponent {
+    @Input() MovieList : Movie[];
 }

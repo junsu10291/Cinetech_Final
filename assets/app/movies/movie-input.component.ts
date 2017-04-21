@@ -3,6 +3,8 @@ import { Movie } from "./movie.model";
 import { MovieDetailModalComponent } from "../movies/movie-detail-modal.component";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { ModalService } from "../modal/modal.service";
+import { MovieService } from "./movie.service";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-movie-input',
@@ -35,7 +37,11 @@ export class MovieInputComponent implements OnInit {
     fontSize: String = "20px";
     modalRef = null;
 
-    constructor(private modalService: NgbModal, private modalCloseService: ModalService) {}
+    constructor(
+        private modalService: NgbModal, 
+        private modalCloseService: ModalService,
+        private movieService: MovieService,
+        private authService: AuthService) {}
 
     ngOnInit() {
         if (this.elementHeight == null) {
@@ -59,12 +65,14 @@ export class MovieInputComponent implements OnInit {
             result => this.closeModal(result)
         );
 
-        if (!this.movie.poster_path.includes("http")) {
-            var baseString = "http://image.tmdb.org/t/p/w342";
-            var temp = new String(this.movie.poster_path);
-            var newString = baseString.concat(temp.toString());
-            this.movie.poster_path = newString;
-        }
+        // if (!this.movie.poster_path.includes("http")) {
+        //     var baseString = "http://image.tmdb.org/t/p/w342";
+        //     var temp = new String(this.movie.poster_path);
+        //     var newString = baseString.concat(temp.toString());
+        //     this.movie.poster_path = newString;
+        // }
+
+        //let userId = localStorage.getItem('userId');
     }
 
     closeModal(modal : NgbModalRef ) {
@@ -79,8 +87,14 @@ export class MovieInputComponent implements OnInit {
         this.modalRef = this.modalService.open(
             MovieDetailModalComponent, 
             { size: "lg" });
+        
+        this.modalRef.componentInstance.movie = this.movie;
 
         this.modalCloseService.alertOpenModal(this.modalRef);
-        //modalRef.componentInstance.name = 'World';
+        
     } 
+
+    loggedIn() {
+        return this.authService.isLoggedIn();
+    }
 }

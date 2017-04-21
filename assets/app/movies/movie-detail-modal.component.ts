@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Movie } from "./movie.model";
 
@@ -30,10 +30,13 @@ import { Movie } from "./movie.model";
         }
     `]
 })
-export class MovieDetailModalComponent {
-    posterImage = "./img/default_poster.jpg";
-    castImage = "./img/elle_fanning.jpeg";
-    movie = Movie[0];
+export class MovieDetailModalComponent implements OnInit {
+    @Input() movie : Movie;
+    slides = [];
 
-    constructor(public activeModal: NgbActiveModal) {}
+    ngOnInit() {
+        this.slides = ['http://image.tmdb.org/t/p/w780' + this.movie.backdrop_path];
+    }
+
+    constructor(public activeModal: NgbActiveModal) { }
 }
