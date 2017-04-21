@@ -51,6 +51,35 @@ router.get('/topMovies/:genre', function(req, res, next) {
         });
     }    
 });
+//new
+router.get('/:movieId', function(req, res, next) {
+    console.log('anybody find me somebody to love')
+    let movieId = req.params.movieId;
+
+    Movie1.findOne({'_id': movieId}, function(err, movie) {
+        if (err) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        if (!movie) {
+            return res.status(500).json({
+                title: "An error occured; no movie found",
+                error: err
+            });
+        }
+
+        res.status(200).json({
+            message: "success",
+            obj: movie
+        });
+    });
+});
+
+
+
 
 router.get('/:userId/:movieId', function(req, res, next) {
     let userId = req.params.userId;
@@ -159,5 +188,7 @@ router.patch('/updateStars', function(req, res, next) {
     //     }
     // );
 });
+
+
 
 module.exports = router;

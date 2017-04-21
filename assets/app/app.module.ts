@@ -33,6 +33,7 @@ import { MainRightPanelComponent } from "./panel/main-right-panel.component";
 import { ModalService } from "./modal/modal.service";
 import { MovieService } from "./movies/movie.service";
 import { SafePipe } from "./pipe";
+import { PersonalService } from "./personal/personal.service";
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { SafePipe } from "./pipe";
         RegionComponent,
         ActorComponent,
         RecommendationComponent,
-        SafePipe
+        SafePipe,
     ],
     imports: [
         BrowserModule, 
@@ -70,7 +71,7 @@ import { SafePipe } from "./pipe";
         NgbModule.forRoot(),
         ChartsModule
         ],
-    providers: [AuthService, ModalService, MovieService],
+    providers: [AuthService, ModalService, MovieService, PersonalService],
     entryComponents: [MovieDetailModalComponent],
     bootstrap: [AppComponent]
 })

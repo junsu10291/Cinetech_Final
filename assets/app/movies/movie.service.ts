@@ -38,6 +38,17 @@ export class MovieService {
             .catch((error: Response) => Observable.throw(error.json()));   
     }
 
+    getMovies(movieId) {
+        console.log('everyday, i tired riendankadnfl');
+        return this.http.get("http://localhost:3000/movie/" + movieId)
+        .map((response: Response) => {
+            const responseJson = response.json().obj;
+            console.log(responseJson);
+        })
+        .catch((error: Response) => Observable.throw(error.json()));  
+    }
+
+
     getStars(user, movieId) {
         return this.http.get("http://localhost:3000/movie/" + user + "/" + movieId)
                     .map((response: Response) => response.json())

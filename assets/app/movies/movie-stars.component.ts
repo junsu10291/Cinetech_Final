@@ -44,10 +44,10 @@ export class MovieStarsComponent implements OnInit {
         }
     }
 
-    fillStars(rating) {
+   fillStars(rating) {
         for (let i = rating - 1; i >= 0; i--) {
             this.stars[i].fill = true;
-            this.stars[i].color = "#e3cf7a";
+            this.stars[i].color = "#8a4e5b";
         }
     }
 

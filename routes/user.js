@@ -27,6 +27,30 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.get('/:userId', function(req, res, next) {
+    let userId = req.params.userId;
+    User.find({"_id": userId}).exec(function(err, user) {
+         if (err) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        if (!user) {
+            return res.status(500).json({
+                title: "Couldn't find user",
+                error: err
+            });
+        }   
+
+        res.status(200).json({
+            message: "success",
+            obj: user
+        });
+    });
+});
+
 router.post('/signin', function (req, res, next) {
     User.findOne({ userName: req.body.userName }, function(err, user) {
         if (err) {
