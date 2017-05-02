@@ -9,7 +9,7 @@ export class PersonalService {
     constructor(private http: Http) {}
 
     getUser(userId) {
-        return this.http.get("http://frozen-lake-92487.herokuapp.com/user/" + userId) 
+        return this.http.get("https://frozen-lake-92487.herokuapp.com/user/" + userId) 
             .map((response: Response) => {
                     console.log(response);
                     const responseJson = response.json().obj;
