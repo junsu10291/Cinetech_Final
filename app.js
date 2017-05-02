@@ -11,7 +11,7 @@ var movieRoutes = require('./routes/movie');
 var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('localhost:27017/cinetech');
+mongoose.connect('mongodb://jaykim:thisisatest@cluster0-shard-00-00-48vmi.mongodb.net:27017,cluster0-shard-00-01-48vmi.mongodb.net:27017,cluster0-shard-00-02-48vmi.mongodb.net:27017/db?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
 delete mongoose.connection.models['Movie'];
 
 // view engine setup
