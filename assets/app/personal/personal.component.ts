@@ -66,7 +66,7 @@ export class PersonalComponent implements OnInit {
                 {'icon': "fa fa-trophy fa-5", 'figure': 'Lv. 1', 'text': "MOVIE NOVICE"},
                 {'icon': "fa fa-clock-o fa-5", 'figure': this.playTime + 'H', 'text': "PLAY TIME"}, 
                 {'icon': "fa fa-thumbs-o-up fa-5", 'figure': this.num_rate, 'text': "NUM RATED"}, 
-                {'icon': "fa fa-star fa-5", 'figure': Math.round(this.ave_rate), 'text': "AVG RATING"} 
+                {'icon': "fa fa-star fa-5", 'figure': this.ave_rate.toFixed(2), 'text': "AVG RATING"} 
             ];
             });     
         
