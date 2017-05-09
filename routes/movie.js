@@ -33,6 +33,31 @@ router.get('/search/:search', function(req, res, next) {
     });
 });
 
+router.get('/similarMovies/:genre', function(req, res, next) {
+    let genre = req.params.genre;
+    let rand = Math.floor(Math.random() * 70);
+    Movie1.find({"genre": genre}).skip(rand).limit(10).exec(function(err, movies) {
+        if (err) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        if (!movies) {
+            return res.status(500).json({
+                title: "Couldn't find movie",
+                error: err
+            });
+        }   
+
+        res.status(200).json({
+            message: "success",
+            obj: movies
+        });
+    });
+});
+
 router.get('/topMovies/:genre', function(req, res, next) {
     let genre = req.params.genre;
 

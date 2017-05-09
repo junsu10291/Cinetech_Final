@@ -64,8 +64,8 @@
             <h4> SIMILAR MOVIES </h4>
             <!--CAST BLOCK-->
             <app-movie-input
-                *ngFor="let mov of [1,2,3,4,5,6]"
-                [movie] = "movie"
+                *ngFor="let mov of similarMovies"
+                [movie] = "mov"
                 [elementWidth] = 200
                 class="detail-movie-input">
             </app-movie-input>

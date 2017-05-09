@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Movie } from "./movie.model";
+import { MovieService } from "./movie.service";
 
 @Component({
     selector: 'app-movie-detail-modal',
@@ -32,6 +33,7 @@ import { Movie } from "./movie.model";
 })
 export class MovieDetailModalComponent implements OnInit {
     @Input() movie : Movie;
+    similarMovies : Movie[];
     slides = [];
     fixed = true;
 
@@ -39,7 +41,13 @@ export class MovieDetailModalComponent implements OnInit {
         this.slides = [
             {"img": 'http://image.tmdb.org/t/p/w780' + this.movie.backdrop_path, "info": {"label": "", "title": "", "average": ""}}
         ]
+        
+        this.movieService.getSimilarMovies(this.movie.genres)
+            .subscribe(
+                (movies: Movie[]) => {
+                    this.similarMovies = movies;
+            });
     }
 
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(public activeModal: NgbActiveModal, private movieService: MovieService) { }
 }

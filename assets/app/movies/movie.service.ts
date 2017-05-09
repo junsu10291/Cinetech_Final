@@ -8,6 +8,34 @@ import { Movie } from "./movie.model";
 export class MovieService {
     constructor(private http: Http) {}
 
+    getSimilarMovies(genre) {
+        return this.http.get("http://localhost:3000/movie/similarMovies/" + genre) 
+            .map((response: Response) => {
+                const responseJson = response.json().obj;
+                let movies : Movie[] = [];
+                for (let movie of responseJson) {
+                    movies.push(
+                        new Movie(
+                            movie.title, 
+                            movie._id,
+                            movie.genre,
+                            movie.backdrop_path,
+                            movie.poster_path,
+                            movie.trailer_path,
+                            movie.runtime,
+                            movie.vote_count,
+                            movie.vote_average,
+                            movie.country,
+                            movie.overview,
+                            movie.cast)
+                    )
+                }
+
+                return movies;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));           
+    }
+
     getTopMovies(genre) {
         return this.http.get("http://localhost:3000/movie/topMovies/" + genre) 
             .map((response: Response) => {

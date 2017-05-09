@@ -3,8 +3,8 @@ import { Cast } from "../actors/cast.model";
 
 export class Movie {
     constructor(
+        public title: string,
         public id: string,
-        public title?: string, 
         public genres?: [string], 
         public backdrop_path?: string,
         public poster_path?: string,
