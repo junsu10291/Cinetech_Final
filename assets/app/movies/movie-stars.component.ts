@@ -25,7 +25,7 @@ export class MovieStarsComponent implements OnInit {
 
     ngOnInit() {
         if (this.fixed) {
-            this.movieService.getMovies(this.movie.id)
+            this.movieService.getMovie(this.movie.id)
                 .subscribe(
                     response => {
                         this.numStars = response.vote_average;
