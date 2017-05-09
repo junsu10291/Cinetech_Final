@@ -16,7 +16,11 @@ export class MainComponent implements OnInit {
     comedyTopMovies : Movie[] = [];
     fantasyTopMovies : Movie[] = [];
     scifiTopMovies : Movie[] = [];
-    slides = ["./img/carousel_1.jpg", "./img/carousel_2.jpg", "./img/carousel_3.jpg"];
+    slides = [
+        {"img" : "./img/carousel_11.jpg", "info" : {"label": "Today's Animation", "title": "Your Name.", "average": "Average rating: 4.5"}},
+        {"img" : "./img/carousel_2.jpg", "info" : {"label": "Best Picture of 2016", "title": "Moonlight", "average": "Average rating: 4.1"}},
+        {"img" : "./img/carousel_3.jpg", "info" : {"label": "Today's Action", "title": "Dark Knight", "average": "Average rating: 4.8"}},
+        ];
 
     genres = [];
 

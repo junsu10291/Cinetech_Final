@@ -3,11 +3,41 @@ var router = express.Router();
 var Movie1 = require('../models/movie');
 var User = require('../models/user');
 
+router.get('/search/:search', function(req, res, next) {
+    let search = req.params.search;
+
+    Movie1.find({"title": new RegExp(search, "i") }, function(err, movies) {
+        
+        if (err) {
+            return res.status(500).json({
+                title: "An error occuredlkwmlkm",
+                error: err
+            });
+        }
+
+        if (!movies) {
+            return res.status(500).json({
+                title: "An error occured; no movie found",
+                error: err
+            });
+        }
+        console.log("results from movies.js mothafucka");
+        console.log("length");
+        console.log(movies.length);
+        console.log(movies);
+
+        return res.status(200).json({
+            message: "success",
+            obj: movies
+        });
+    });
+});
+
 router.get('/topMovies/:genre', function(req, res, next) {
     let genre = req.params.genre;
 
     if(genre.toString() === "recommendation") {
-        Movie1.find().sort('-popularity').limit(20)
+        Movie1.find().sort('-vote_average').limit(20)
         .exec(function(err, movies) {
             if (err) {
                 return res.status(500).json({
@@ -78,9 +108,6 @@ router.get('/:movieId', function(req, res, next) {
     });
 });
 
-
-
-
 router.get('/:userId/:movieId', function(req, res, next) {
     let userId = req.params.userId;
     let movieId = req.params.movieId;
@@ -102,8 +129,6 @@ router.get('/:userId/:movieId', function(req, res, next) {
         }
 
         var movies = user.movieRatings;
-        console.log(user);
-        console.log(movieId);
 
         for (let i =0; i < movies.length; i ++) {
             if (movies[i].movie.toString() === movieId) {
@@ -123,18 +148,19 @@ router.patch('/updateStars', function(req, res, next) {
     let movieId = req.body.movieId;
     let rating = req.body.rating;
     let foundMovie = false;
+    let pastRating = null;
 
     User.findOne({'_id': userId}, function(err, object) {
         if (err) {
             return res.status(500).json({
-                title: "An error occured",
+                title: "An error occured finding users",
                 error: err
             });
         }
 
         if (!object) {
             return res.status(500).json({
-                title: "An error occured",
+                title: "An error occured, no user with given user id",
                 error: err
             });
         }
@@ -146,6 +172,7 @@ router.patch('/updateStars', function(req, res, next) {
 
         for (let i = 0; i < movieRatings.length; i++) {
             if (movieRatings[i].movie.toString() === movieId) {
+                pastRating = movieRatings[i].rating;
                 movieRatings[i].rating = rating;
                 foundMovie = true;
             }
@@ -155,7 +182,7 @@ router.patch('/updateStars', function(req, res, next) {
             movieRatings.push({'movie': movieId, 'rating': rating});
         }
 
-        object.save(function(err, saveRes) {
+        Movie1.findOne({'_id': movieId}, function(err, movie) {
             if (err) {
                 return res.status(500).json({
                     title: "An error occured",
@@ -163,32 +190,60 @@ router.patch('/updateStars', function(req, res, next) {
                 });
             }
 
-            res.status(200).json({
-                message: "success",
-                obj: rating
+            if (!movie) {
+                return res.status(500).json({
+                    title: "An error occured; no movie found",
+                    error: err
+                });
+            }
+
+            let movieAverage = movie.vote_average;
+            let movieVoteCount = movie.vote_count;
+
+            let updatedMovieAverage = null;
+            let updatedMovieVoteCount = null;
+
+            if (foundMovie) {
+                console.log("found movie");
+                updatedMovieAverage = (movieAverage * movieVoteCount - pastRating + rating) / (movieVoteCount);
+                updatedMovieVoteCount = movieVoteCount;
+            } else { // new vote
+                console.log("didn't find movie");
+                updatedMovieAverage = (movieAverage * movieVoteCount + rating) / (movieVoteCount + 1);
+                updatedMovieVoteCount = movieVoteCount + 1;
+            }
+
+            console.log(updatedMovieAverage);
+            console.log(updatedMovieVoteCount);
+
+            movie.vote_average = updatedMovieAverage;
+            movie.vote_count = updatedMovieVoteCount;
+
+            movie.save(function(err, saveRes) {
+                if (err) {
+                    return res.status(500).json({
+                        title: "An error occured saving movie",
+                        error: err
+                    });
+                }
+
+                // saving the user
+                object.save(function(err, saveRes) {
+                    if (err) {
+                        return res.status(500).json({
+                            title: "An error occured saving user",
+                            error: err
+                        });
+                    }
+
+                    res.status(200).json({
+                            message: "success",
+                            obj: rating
+                    });
+                });
             });
         });
     });
-
-    // User.update({'userId': userId, 'movieRatings.movie': movieId}, 
-    // { '$set' : {'movieRatings.$.rating': rating}, '$inc' : {'numRated': 1}},
-    
-    //     function(err, object) {
-    //         if (err) {
-    //             return res.status(500).json({
-    //                 title: "An error occured",
-    //                 error: err
-    //             });
-    //         }
-
-    //         res.status(200).json({
-    //             message: "success",
-    //             obj: rating
-    //         });
-    //     }
-    // );
 });
-
-
 
 module.exports = router;

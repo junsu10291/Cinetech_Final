@@ -34,6 +34,7 @@ import { ModalService } from "./modal/modal.service";
 import { MovieService } from "./movies/movie.service";
 import { SafePipe } from "./pipe";
 import { PersonalService } from "./personal/personal.service";
+import { SearchModalComponent } from "./movies/search-modal.component";
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { PersonalService } from "./personal/personal.service";
         MovieDetailModalComponent,
         MainRightPanelComponent,
         PersonalComponent,
+        SearchModalComponent,
         RateComponent,
         RegionComponent,
         ActorComponent,
@@ -72,7 +74,7 @@ import { PersonalService } from "./personal/personal.service";
         ChartsModule
         ],
     providers: [AuthService, ModalService, MovieService, PersonalService],
-    entryComponents: [MovieDetailModalComponent],
+    entryComponents: [MovieDetailModalComponent, SearchModalComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

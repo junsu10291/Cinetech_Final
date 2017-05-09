@@ -5,6 +5,7 @@ export class ModalService {
     modalClose = new EventEmitter<NgbModalRef>();
 
     alertOpenModal(modal : NgbModalRef) {
+        console.log("opening modal!!!!!!!!");
         this.modalClose.emit(modal);
     }
 }

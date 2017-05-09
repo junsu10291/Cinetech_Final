@@ -8,16 +8,9 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class CarouselComponent implements OnInit {   
-    @Input() slidePath : String[];
-    slides = [];
+    @Input() slides;
 
-    ngOnInit() {
-        for (let i = 0; i < this.slidePath.length; i++) {
-            this.slides.push(
-                {'img': this.slidePath[i], 'info': {'label': "Label1", 'title': "Title1", 'avgRating': "Avg1", 'tags': "Tag1"}}
-            );
-        }
-    }
+    ngOnInit() {}
     
     constructor(config: NgbCarouselConfig) {}
 }

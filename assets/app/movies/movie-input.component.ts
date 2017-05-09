@@ -55,8 +55,10 @@ export class MovieInputComponent implements OnInit {
         this.Width = this.elementWidth + "px";
         this.ImgWidth = (this.elementWidth - 2) + "px";
 
-        if (this.elementWidth <= 250) {
+        if (this.elementWidth <= 170) {
             this.fontSize = "10px";
+        } else if (this.elementWidth <= 250) {
+            this.fontSize = "15px";
         } else  {
             this.fontSize = "25px";
         }

@@ -1,0 +1,9 @@
+<div class="modal-body-search">
+    <app-movie-input
+        *ngFor="let content of movies"
+        [movie] = "content"
+        [elementWidth] = 240 
+        style="display: inline-block; padding-right: 30px; padding-bottom: 20px">
+        >
+    </app-movie-input>  
+</div>

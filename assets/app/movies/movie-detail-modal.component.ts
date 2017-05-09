@@ -33,9 +33,12 @@ import { Movie } from "./movie.model";
 export class MovieDetailModalComponent implements OnInit {
     @Input() movie : Movie;
     slides = [];
+    fixed = true;
 
     ngOnInit() {
-        this.slides = ['http://image.tmdb.org/t/p/w780' + this.movie.backdrop_path];
+        this.slides = [
+            {"img": 'http://image.tmdb.org/t/p/w780' + this.movie.backdrop_path, "info": {"label": "", "title": "", "average": ""}}
+        ]
     }
 
     constructor(public activeModal: NgbActiveModal) { }

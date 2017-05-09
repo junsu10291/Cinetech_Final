@@ -1,4 +1,4 @@
-<div id="stars" (mouseleave)="fillStars(numStars)">
+<div id="stars" (mouseleave)="onMouseLeave()">
     <span 
         *ngFor="let star of stars"
         (click)="movieClick(star.id, $event)"

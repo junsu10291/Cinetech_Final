@@ -1,8 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from "../auth/auth.service";
 import { User } from "../auth/user.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ModalService } from "../modal/modal.service";
+import { MovieService } from "../movies/movie.service";
+import { Movie } from "../movies/movie.model";
+import { SearchModalComponent } from "../movies/search-modal.component";
 
 
 @Component({
@@ -18,9 +22,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class NavBarComponent implements OnInit {
     signUpForm: FormGroup;
     signInForm: FormGroup;
+    searchForm: FormGroup;
     openedModel: NgbModalRef;
-    signinError = false;
-
     ngOnInit() {
         this.signUpForm = new FormGroup({
             userName: new FormControl(null, Validators.required),
@@ -31,17 +34,54 @@ export class NavBarComponent implements OnInit {
             ])
         })
 
+        this.modalCloseService.modalClose.subscribe(
+            result => {
+                if (this.openedModel != null) {
+                    this.openedModel.close();
+                }                
+            }
+        );
+
         this.signInForm = new FormGroup({
             userName: new FormControl(null, Validators.required),
             password: new FormControl(null, Validators.required)
         })
+
+        this.searchForm = new FormGroup({
+            search: new FormControl(null, Validators.required),
+        })
     }
 
-    constructor(private modalService: NgbModal, private authService: AuthService) {}
+    constructor(
+        private movieService: MovieService, 
+        private modalService: NgbModal, 
+        private authService: AuthService, 
+        private modalCloseService: ModalService,
+        private _changeDetectionRef : ChangeDetectorRef) {}
+
+    onSearchSubmit() {
+        const search = this.searchForm.value.search;
+
+        this.movieService.search(search)
+        .subscribe(
+            data => {
+                this.openSearchModal(data);
+            },
+            error => {
+                console.log("error retrieving search movie!");
+                console.log(error);
+            }
+        );
+    }
 
     open(content) {
         this.openedModel = this.modalService.open(content);
     }
+
+    openSearchModal(movies) {
+        this.openedModel = this.modalService.open(SearchModalComponent, { size: "lg" });
+        this.openedModel.componentInstance.movies = movies;
+    } 
 
     onSignUpSubmit() {
         const user = new User(this.signUpForm.value.userName, this.signUpForm.value.password, this.signUpForm.value.email);
@@ -67,11 +107,9 @@ export class NavBarComponent implements OnInit {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
                     this.openedModel.close();
-                    this.signinError = false;
                 },
                 error => {
                     console.log(error);
-                    this.signinError = true;
                 }
             );
 

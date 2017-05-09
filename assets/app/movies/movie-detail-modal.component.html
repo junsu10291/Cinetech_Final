@@ -1,4 +1,4 @@
-<app-carousel [slidePath]="slides"></app-carousel>
+<app-carousel [slides]="slides"></app-carousel>
 <div class="row">
     <div id="content" class="col-md-8">
         <div id="movie-info">
@@ -12,10 +12,10 @@
                 </div>
 
                 <div id="movie-detail-rating">
-                    <app-movie-stars [movie]="movie"></app-movie-stars>
+                    <app-movie-stars [fixed]="fixed" [movie]="movie"></app-movie-stars>
 
                     <div id="detail-stars-text">
-                        Average Rating: 4.2 (3,812 Reviews)
+                        Average Rating: {{ movie.vote_average }} ({{ movie.vote_count }} Reviews)
                     </div>
 
                     <h4 style="margin-bottom: 0"> RATE MOVIE: </h4>

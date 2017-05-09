@@ -9,7 +9,7 @@ export class Movie {
         public backdrop_path?: string,
         public poster_path?: string,
         public trailer_path?: string,
-        public popularity?: Number,
+        public runtime?: Number,
         public vote_count?: Number,
         public vote_average?: Number,
         public country?: string,

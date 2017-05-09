@@ -12,36 +12,56 @@ import { MovieService } from "./movie.service";
 export class MovieStarsComponent implements OnInit {
     numStars : number = 0;
     @Input() movie: Movie;
+    @Input() fixed: Boolean;
 
     labelShow = false;
     stars = [];
 
-    constructor(private movieService : MovieService) {}
-
-    ngOnInit() {
+    constructor(private movieService : MovieService) {
         for (let i = 1; i <= 5; i++) {
             this.stars.push({"id": i, "fill": false, "color": "black"});
         }
+    }
 
-        this.movieService.getStars(localStorage.getItem('userId'), this.movie.id)
-            .subscribe(
-                response => {
-                    console.log(response);
-                    this.numStars = response.obj;
-                    this.fillStars(this.numStars);
-                }
-            );
+    ngOnInit() {
+        if (this.fixed) {
+            this.movieService.getMovies(this.movie.id)
+                .subscribe(
+                    response => {
+                        this.numStars = response.vote_average;
+                        this.movie.vote_average = response.vote_average;
+                        this.movie.vote_count = response.vote_count;
+                        this.fillStars(Math.round(this.numStars));
+                    }
+                );
+        } else {
+            this.movieService.getStars(localStorage.getItem('userId'), this.movie.id)
+                .subscribe(
+                    response => {
+                        this.numStars = response.obj;
+                        this.fillStars(this.numStars);
+                    }
+                );
+        }
     }
 
     focusStars(starId) {
-        this.fillStars(starId);
+        if (!this.fixed) {
+            this.fillStars(starId);
+        }
     }
 
     unfocusStars() {
-        for(let i = 0; i < this.stars.length; i++) {
-            this.stars[i].fill = false;
-            this.stars[i].color = "black";
+        if (!this.fixed) {
+            for(let i = 0; i < this.stars.length; i++) {
+                this.stars[i].fill = false;
+                this.stars[i].color = "black";
+            }
         }
+    }
+
+    onMouseLeave() {
+        this.fillStars(this.numStars);
     }
 
    fillStars(rating) {
@@ -52,18 +72,18 @@ export class MovieStarsComponent implements OnInit {
     }
 
     movieClick(starId, event) {
-        console.log("movie stars click!");
-        this.movieService.updateStars(
-            localStorage.getItem('userId'), 
-            this.movie.id, 
-            starId)
-                .subscribe(
-                    result => {
-                        console.log(result); 
-                        this.numStars = result.obj;
-                    }
-                );
-
-        event.stopPropagation();
+        if (!this.fixed) {
+            this.movieService.updateStars(
+                localStorage.getItem('userId'), 
+                this.movie.id, 
+                starId)
+                    .subscribe(
+                        result => {
+                            console.log(result); 
+                            this.numStars = result.obj;
+                        }
+                    );
+            event.stopPropagation();
+        }
     }
 }
