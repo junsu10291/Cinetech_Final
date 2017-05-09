@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
                 (movies: Movie[]) => {
                     console.log("action movies: ");
                     console.log(movies);
-                    this.actionTopMovies = movies;
+                    this.actionTopMovies = movies.splice(0, 15);
                     this.genres.push(
                         {'genre': "Action", 'list': this.actionTopMovies}
                     );
@@ -56,7 +56,7 @@ export class MainComponent implements OnInit {
                 (movies: Movie[]) => {
                     console.log("comedy movies: ");
                     console.log(movies);
-                    this.comedyTopMovies = movies;
+                    this.comedyTopMovies = movies.splice(0, 15);
                     this.genres.push(
                         {'genre': "Comedy", 'list': this.comedyTopMovies}
                     );
@@ -67,7 +67,7 @@ export class MainComponent implements OnInit {
                 (movies: Movie[]) => {
                     console.log("fantasy movies: ");
                     console.log(movies);
-                    this.fantasyTopMovies = movies;
+                    this.fantasyTopMovies = movies.splice(0, 15);
                     this.genres.push(
                         {'genre': "Fantasy", 'list': this.fantasyTopMovies}
                     );
@@ -78,7 +78,7 @@ export class MainComponent implements OnInit {
                 (movies: Movie[]) => {
                     console.log("scifi movies: ");
                     console.log(movies);
-                    this.scifiTopMovies = movies;
+                    this.scifiTopMovies = movies.splice(0, 15);
                     this.genres.push(
                         {'genre': "Science Fiction", 'list': this.scifiTopMovies}
                     );

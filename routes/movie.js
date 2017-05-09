@@ -37,7 +37,7 @@ router.get('/topMovies/:genre', function(req, res, next) {
     let genre = req.params.genre;
 
     if(genre.toString() === "recommendation") {
-        Movie1.find().sort('-vote_average').limit(20)
+        Movie1.find().sort('-vote_average').limit(15)
         .exec(function(err, movies) {
             if (err) {
                 return res.status(500).json({
@@ -59,7 +59,7 @@ router.get('/topMovies/:genre', function(req, res, next) {
             });
         });
     } else {
-        Movie1.find({"genre": genre}).exec(function(err, movies) {
+        Movie1.find({"genre": genre}).limit(15).exec(function(err, movies) {
             if (err) {
                 return res.status(500).json({
                     title: "An error occured",
