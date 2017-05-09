@@ -3,7 +3,7 @@
             <div class="col-md-3 profile-card profile-picture">  
                 <div class="profile-card-picture-wrapper">
                     <img [src]=profileImage class="img-circle" id="account-image" style= "padding-bottom: 5px">
-                    <div id="account-name"> Sangha Choi </div>
+                    <div id="account-name"> {{userName}} </div>
                 </div>   
             </div>     
             
@@ -25,6 +25,12 @@
     <div class = "row">
         <rate-chart style="display: inline-block" ></rate-chart>
         <region-chart style="display: inline-block"></region-chart>
-        <actor-chart style="display: inline-block"></actor-chart>
-    <div>
+        <!--<actor-chart style="display: inline-block"></actor-chart>-->
+    </div>
+
+    <app-movie-genre-top 
+        class="genre-top-personal"
+        [Genre]="genre" 
+        [MovieList]="ratedMovies">
+    </app-movie-genre-top>
 </div>

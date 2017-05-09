@@ -3,6 +3,32 @@ var router = express.Router();
 var Movie1 = require('../models/movie');
 var User = require('../models/user');
 
+//new
+router.post('/movies', function(req, res, next) {
+    let movies = req.body.id;
+
+    Movie1.find({'_id': { $in: movies}}, function(err, movie) {
+        if (err) {
+            return res.status(500).json({
+                title: "An error occured",
+                error: err
+            });
+        }
+
+        if (!movie) {
+            return res.status(500).json({
+                title: "An error occured; no movie found",
+                error: err
+            });
+        }
+
+        res.status(200).json({
+            message: "success",
+            obj: movie
+        });
+    });
+});
+
 router.get('/search/:search', function(req, res, next) {
     let search = req.params.search;
 

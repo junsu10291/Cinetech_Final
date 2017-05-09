@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
     comedyTopMovies : Movie[] = [];
     fantasyTopMovies : Movie[] = [];
     scifiTopMovies : Movie[] = [];
+    romanceTopMoves: Movie[] = [];
     slides = [
         {"img" : "./img/carousel_11.jpg", "info" : {"label": "Today's Animation", "title": "Your Name.", "average": "Average rating: 4.5"}},
         {"img" : "./img/carousel_2.jpg", "info" : {"label": "Best Picture of 2016", "title": "Moonlight", "average": "Average rating: 4.1"}},
@@ -29,13 +30,19 @@ export class MainComponent implements OnInit {
     ngOnInit() {
         this.genres = [];
 
+        this.movieService.getTopMovies("Romance")
+            .subscribe(
+                (movies: Movie[]) => {
+                    this.romanceTopMoves = movies;
+                    this.genres.push(
+                        {'genre': "Romance", 'list': this.romanceTopMoves}
+                    );
+            });
+
         this.movieService.getTopMovies("theatre")
             .subscribe(
                 (movies: Movie[]) => {
                     this.theatreTopMovies = movies;
-                    this.genres.push(
-                        {'genre': "Theatre", 'list': this.theatreTopMovies}
-                    );
             });
 
         this.movieService.getTopMovies("Action")

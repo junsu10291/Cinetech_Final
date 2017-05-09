@@ -60,7 +60,7 @@ export class MovieInputComponent implements OnInit {
         } else if (this.elementWidth <= 250) {
             this.fontSize = "15px";
         } else  {
-            this.fontSize = "25px";
+            this.fontSize = "23px";
         }
 
         this.modalCloseService.modalClose.subscribe(

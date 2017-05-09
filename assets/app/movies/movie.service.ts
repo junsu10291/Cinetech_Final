@@ -36,6 +36,38 @@ export class MovieService {
             .catch((error: Response) => Observable.throw(error.json()));           
     }
 
+    getMovies(movies) {
+        const body = JSON.stringify(movies);
+        const headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.http.post("http://localhost:3000/movie/movies/", body, {headers: headers})
+         .map((response: Response) => {
+            console.log("dont oyu know");
+            const responseJson = response.json().obj;
+            let movies : Movie[] = [];
+            for (let movie of responseJson) {
+                movies.push(
+                    new Movie(
+                        movie.title, 
+                        movie._id,
+                        movie.genre,
+                        movie.backdrop_path,
+                        movie.poster_path,
+                        movie.trailer_path,
+                        movie.runtime,
+                        movie.vote_count,
+                        movie.vote_average,
+                        movie.country,
+                        movie.overview,
+                        movie.cast)
+                )
+            }
+
+            return movies;
+        })
+        .catch((error: Response) => Observable.throw(console.log(error)));  
+    }
+
     getTopMovies(genre) {
         return this.http.get("http://localhost:3000/movie/topMovies/" + genre) 
             .map((response: Response) => {
@@ -66,7 +98,7 @@ export class MovieService {
             .catch((error: Response) => Observable.throw(error.json()));   
     }
 
-    getMovies(movieId) {
+    getMovie(movieId) {
         console.log('everyday, i tired riendankadnfl');
         return this.http.get("http://localhost:3000/movie/" + movieId)
         .map((response: Response) => {
