@@ -32,9 +32,7 @@ export class MainComponent implements OnInit {
         this.movieService.getTopMovies("theatre")
             .subscribe(
                 (movies: Movie[]) => {
-                    console.log("theatre movies: ");
-                    console.log(movies);
-                    this.theatreTopMovies = movies.splice(0, 15);
+                    this.theatreTopMovies = movies;
                     this.genres.push(
                         {'genre': "Theatre", 'list': this.theatreTopMovies}
                     );
@@ -43,9 +41,7 @@ export class MainComponent implements OnInit {
         this.movieService.getTopMovies("Action")
             .subscribe(
                 (movies: Movie[]) => {
-                    console.log("action movies: ");
-                    console.log(movies);
-                    this.actionTopMovies = movies.splice(0, 15);
+                    this.actionTopMovies = movies;
                     this.genres.push(
                         {'genre': "Action", 'list': this.actionTopMovies}
                     );
@@ -54,9 +50,7 @@ export class MainComponent implements OnInit {
         this.movieService.getTopMovies("Comedy")
             .subscribe(
                 (movies: Movie[]) => {
-                    console.log("comedy movies: ");
-                    console.log(movies);
-                    this.comedyTopMovies = movies.splice(0, 15);
+                    this.comedyTopMovies = movies;
                     this.genres.push(
                         {'genre': "Comedy", 'list': this.comedyTopMovies}
                     );
@@ -65,9 +59,7 @@ export class MainComponent implements OnInit {
         this.movieService.getTopMovies("Fantasy")
             .subscribe(
                 (movies: Movie[]) => {
-                    console.log("fantasy movies: ");
-                    console.log(movies);
-                    this.fantasyTopMovies = movies.splice(0, 15);
+                    this.fantasyTopMovies = movies;
                     this.genres.push(
                         {'genre': "Fantasy", 'list': this.fantasyTopMovies}
                     );
@@ -76,9 +68,7 @@ export class MainComponent implements OnInit {
         this.movieService.getTopMovies("Science Fiction")
             .subscribe(
                 (movies: Movie[]) => {
-                    console.log("scifi movies: ");
-                    console.log(movies);
-                    this.scifiTopMovies = movies.splice(0, 15);
+                    this.scifiTopMovies = movies;
                     this.genres.push(
                         {'genre': "Science Fiction", 'list': this.scifiTopMovies}
                     );
