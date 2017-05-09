@@ -146,25 +146,23 @@
       </div>
     </form>
 
-    <form class="form-inline">
-        <button 
-          *ngIf="!isLoggedIn()"
-          (click)="open(signin)" 
-          class="btn btn-primary" 
-          type="button" 
-          style="margin-right: 10px; background-color: #A9A9A9	; border-color:	#A9A9A9	"> Sign In </button>
-        <button 
-          *ngIf="!isLoggedIn()"
-          (click)="open(signup)" 
-          class="btn btn-primary" 
-          type="button"
-          style= "margin-right: 10px; background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Sign Up </button>
-        <button 
-          *ngIf="isLoggedIn()"
-          (click)="logout()"
-          class="btn btn-primary" 
-          type="button"
-          style= " background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Log Out </button>
-    </form>
+    <button 
+      type="button"
+      *ngIf="!isLoggedIn()"
+      (click)="open(signin)" 
+      class="btn btn-primary" 
+      style="margin-right: 10px; background-color: #A9A9A9	; border-color:	#A9A9A9	"> Sign In </button>
+    <button 
+      type="button"
+      *ngIf="!isLoggedIn()"
+      (click)="open(signup)" 
+      class="btn btn-primary" 
+      style= "margin-right: 10px; background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Sign Up </button>
+    <button 
+      type="button"
+      *ngIf="isLoggedIn()"
+      (click)="logout()"
+      class="btn btn-primary" 
+      style= " background-color:	#A9A9A9	; border-color:	#A9A9A9	"> Log Out </button>
   </div>
 </nav>
