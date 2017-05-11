@@ -9,7 +9,7 @@ export class MovieService {
     constructor(private http: Http) {}
 
     getSimilarMovies(genre) {
-        return this.http.get("https://frozen-lake-92487.herokuapp.com0/movie/similarMovies/" + genre) 
+        return this.http.get("http://localhost:3000/movie/similarMovies/" + genre) 
             .map((response: Response) => {
                 const responseJson = response.json().obj;
                 let movies : Movie[] = [];
@@ -40,7 +40,7 @@ export class MovieService {
         const body = JSON.stringify(movies);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post("https://frozen-lake-92487.herokuapp.com0/movie/movies/", body, {headers: headers})
+        return this.http.post("http://localhost:3000/movie/movies/", body, {headers: headers})
          .map((response: Response) => {
             console.log("dont oyu know");
             const responseJson = response.json().obj;
@@ -69,7 +69,7 @@ export class MovieService {
     }
 
     getTopMovies(genre) {
-        return this.http.get("https://frozen-lake-92487.herokuapp.com0/movie/topMovies/" + genre) 
+        return this.http.get("http://localhost:3000/movie/topMovies/" + genre) 
             .map((response: Response) => {
                     console.log(response);
                     const responseJson = response.json().obj;
@@ -100,7 +100,7 @@ export class MovieService {
 
     getMovie(movieId) {
         console.log('everyday, i tired riendankadnfl');
-        return this.http.get("https://frozen-lake-92487.herokuapp.com0/movie/" + movieId)
+        return this.http.get("http://localhost:3000/movie/" + movieId)
         .map((response: Response) => {
             const responseJson = response.json().obj;
             console.log(responseJson);
@@ -111,7 +111,7 @@ export class MovieService {
 
 
     getStars(user, movieId) {
-        return this.http.get("https://frozen-lake-92487.herokuapp.com0/movie/" + user + "/" + movieId)
+        return this.http.get("http://localhost:3000/movie/" + user + "/" + movieId)
                     .map((response: Response) => response.json())
                     .catch((error: Response) => Observable.throw(error));
     }
@@ -121,13 +121,13 @@ export class MovieService {
         const body = JSON.stringify(object);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.patch('https://frozen-lake-92487.herokuapp.com0/movie/updateStars', body, {headers: headers})
+        return this.http.patch('http://localhost:3000/movie/updateStars', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }    
 
     search(search) {
-        return this.http.get("https://frozen-lake-92487.herokuapp.com0/movie/search/" + search)
+        return this.http.get("http://localhost:3000/movie/search/" + search)
            .map((response: Response) => {
                     console.log(response);
                     const responseJson = response.json().obj;
