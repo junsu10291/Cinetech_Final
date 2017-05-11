@@ -12,7 +12,7 @@ export class AuthService {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('https://frozen-lake-92487.herokuapp.com0/user', body, {headers: headers})
+        return this.http.post('http://localhost:3000/user', body, {headers: headers})
             .map(
                 (response: Response) => response.json()
             )
@@ -25,7 +25,7 @@ export class AuthService {
 
         console.log("sending");
 
-        return this.http.post('https://frozen-lake-92487.herokuapp.com0/user/signin', body, {headers: headers})
+        return this.http.post('http://localhost:3000/user/signin', body, {headers: headers})
             .map(
                 (response: Response) => response.json()
             )
